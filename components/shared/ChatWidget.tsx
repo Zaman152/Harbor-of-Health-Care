@@ -52,6 +52,20 @@ const ChatWidget: React.FC = () => {
 
     setMessages((prev) => [...prev, userMessage, botMessage]);
     setInputValue("");
+
+    // Send message to webhook (non-blocking)
+    fetch("https://hoh.app.n8n.cloud/webhook/d079e4d9-a3e9-4054-8b50-f0222c75e880", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Message: trimmed,
+      }),
+    }).catch((error) => {
+      // Fail silently but log errors for debugging
+      console.error("Failed to send message to webhook:", error);
+    });
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
