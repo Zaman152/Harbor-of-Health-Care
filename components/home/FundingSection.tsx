@@ -33,7 +33,7 @@ const FundingSection: React.FC = () => {
                 Making Care Accessible
               </h3>
               <p className="text-gray-700 leading-relaxed mb-6">
-                We understand that accessing quality home care services can be a concern. That's why we're committed to helping you navigate funding options available in Alberta, including:
+                We understand that accessing quality home care services can be a concern. That&apos;s why we&apos;re committed to helping you navigate funding options available in Alberta, including:
               </p>
               <ul className="text-left space-y-3 mb-8 max-w-2xl mx-auto">
                 <li className="flex items-start space-x-3">

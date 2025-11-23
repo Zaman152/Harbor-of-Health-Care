@@ -67,7 +67,7 @@ const CTASection: React.FC = () => {
               Our care planning process is a proactive one and focuses on taking preventative measures toward ensuring good health and well-being for as long as possible. We believe finding the best caregiver for you or your loved one is one of the most important choices you will ever need to make.
             </p>
             <p className="text-lg text-teal-50 leading-relaxed">
-              We promise to make this process as simple as possible. We know finding the care you or your loved one needs is a process no one ever wants to go through, but sometimes life decides otherwise. Rest assured, we care and we've got you covered through this difficult process or time. <span className="font-semibold italic text-cyan-200">We are here to Serve!</span>
+              We promise to make this process as simple as possible. We know finding the care you or your loved one needs is a process no one ever wants to go through, but sometimes life decides otherwise. Rest assured, we care and we&apos;ve got you covered through this difficult process or time. <span className="font-semibold italic text-cyan-200">We are here to Serve!</span>
             </p>
           </motion.div>
           <motion.div

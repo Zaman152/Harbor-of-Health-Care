@@ -8,6 +8,47 @@ import Button from "@/components/ui/Button";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
 
+// Separate component for stat card to fix hooks rule
+const StatCard: React.FC<{
+  stat: { number: number; suffix: string; label: string; isText?: boolean };
+  index: number;
+}> = ({ stat, index }) => {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
+
+  return (
+    <motion.div
+      key={stat.label}
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+      whileHover={{ y: -8, scale: 1.02 }}
+      className="glass-card p-6 text-center"
+    >
+      <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+        {stat.isText ? (
+          stat.label
+        ) : (
+          <>
+            <CountUp
+              start={0}
+              end={stat.number}
+              duration={2}
+              decimals={0}
+            />
+            {stat.suffix}
+          </>
+        )}
+      </div>
+      <div className="text-gray-700 font-medium">{stat.label}</div>
+    </motion.div>
+  );
+};
+
 const HeroSection: React.FC = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 500], [0, 150]);
@@ -89,7 +130,7 @@ const HeroSection: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl"
               >
-                We provide personalized care, designed to meet your or your loved one's unique care needs. Our extensive network consists of thoroughly vetted, educated, bonded, and certified caregivers who are dedicated to providing exceptional care delivered with genuine compassion for you or your loved one.
+                We provide personalized care, designed to meet your or your loved one&apos;s unique care needs. Our extensive network consists of thoroughly vetted, educated, bonded, and certified caregivers who are dedicated to providing exceptional care delivered with genuine compassion for you or your loved one.
               </motion.p>
             </div>
 
@@ -187,42 +228,9 @@ const HeroSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16"
         >
-          {stats.map((stat, index) => {
-            const { ref, inView } = useInView({
-              threshold: 0.5,
-              triggerOnce: true,
-            });
-
-            return (
-              <motion.div
-                key={stat.label}
-                ref={ref}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="glass-card p-6 text-center"
-              >
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                  {stat.isText ? (
-                    stat.label
-                  ) : (
-                    <>
-                      <CountUp
-                        start={0}
-                        end={stat.number}
-                        duration={2}
-                        decimals={0}
-                      />
-                      {stat.suffix}
-                    </>
-                  )}
-                </div>
-                <div className="text-gray-700 font-medium">{stat.label}</div>
-              </motion.div>
-            );
-          })}
+          {stats.map((stat, index) => (
+            <StatCard key={stat.label} stat={stat} index={index} />
+          ))}
         </motion.div>
       </div>
 

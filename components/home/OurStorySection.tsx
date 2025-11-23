@@ -29,13 +29,13 @@ const OurStorySection: React.FC = () => {
               <Quote className="w-12 h-12 text-teal-500 mb-4 opacity-50" />
               <div className="space-y-4 text-gray-700 leading-relaxed">
                 <p className="text-lg font-medium">
-                  "My name is Claudine. I started Harbor of Health Home Care Services because, as a nurse of 15 years, I was saddened over witnessing seemingly endless instances of the theft of patients' dignity, other nurses rushing care to dash off to another client, and often not showing up at all. When did health care become merely a business where your loved one was simply a dollar sign?
+                  &quot;My name is Claudine. I started Harbor of Health Home Care Services because, as a nurse of 15 years, I was saddened over witnessing seemingly endless instances of the theft of patients&apos; dignity, other nurses rushing care to dash off to another client, and often not showing up at all. When did health care become merely a business where your loved one was simply a dollar sign?
                 </p>
                 <p className="text-lg">
                   I originally became a nurse to help people, but this industry had become unrecognizable. Everyone deserves affordable, dependable, compassionate, comprehensive health care. Since the old way of doing things was failing so many people, I created my own model where the emphasis is now back on authentic quality care.
                 </p>
                 <p className="text-lg font-medium italic">
-                  May we talk? I would cherish the opportunity to discuss how I can be of service to you and your family. In just a few minutes on our free call, you will realize you will no longer need to accept mediocrity or worse."
+                  May we talk? I would cherish the opportunity to discuss how I can be of service to you and your family. In just a few minutes on our free call, you will realize you will no longer need to accept mediocrity or worse.&quot;
                 </p>
                 <p className="text-right text-teal-600 font-semibold mt-6">
                   — Claudine, Founder & Registered Nurse
@@ -69,7 +69,7 @@ const OurStorySection: React.FC = () => {
                 Our care planning process is a proactive one and focuses on taking preventative measures toward ensuring good health and well-being for as long as possible. We believe finding the best caregiver for you or your loved one is one of the most important choices you will ever need to make.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                We promise to make this process as simple as possible. We know finding the care you or your loved one needs is a process no one ever wants to go through, but sometimes life decides otherwise. Rest assured, we care and we've got you covered through this difficult process or time.
+                We promise to make this process as simple as possible. We know finding the care you or your loved one needs is a process no one ever wants to go through, but sometimes life decides otherwise. Rest assured, we care and we&apos;ve got you covered through this difficult process or time.
               </p>
             </div>
           </motion.div>

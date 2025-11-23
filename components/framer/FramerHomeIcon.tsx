@@ -5,14 +5,16 @@ import * as React from "react";
 import { forwardRef } from "react";
 
 const mask = "var(--framer-icon-mask)";
-const Base = forwardRef(function (props, ref) {
+const Base = forwardRef(function Base(props, ref) {
   return /*#__PURE__*/ _jsx("svg", { ...props, ref, children: props.children });
 });
+Base.displayName = "Base";
 const MotionSVG = motion.create(Base);
-const SVG = /*#__PURE__*/ forwardRef((props, ref) => {
+const SVG = /*#__PURE__*/ forwardRef(function SVG(props, ref) {
   const { animated, layoutId, children, ...rest } = props;
   return animated ? /*#__PURE__*/ _jsx(MotionSVG, { ...rest, layoutId, ref, children }) : /*#__PURE__*/ _jsx("svg", { ...rest, ref, children });
 });
+SVG.displayName = "SVG";
 const svg = '<svg display="block" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 2 14.5 L 12.5 14.5 C 13.605 14.5 14.5 13.605 14.5 12.5 L 14.5 5 L 7.25 0 L 0 5 L 0 12.5 C 0 13.605 0.895 14.5 2 14.5 Z" fill="transparent" height="14.49996px" id="lLOiAXUCt" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--1335ju, 1.5)" stroke="var(--18mrqx2, rgb(0, 0, 0))" transform="translate(4.75 4.75)" width="14.49996px"/><path d="M 0 2 C 0 0.895 0.895 0 2 0 L 2.5 0 C 3.605 0 4.5 0.895 4.5 2 L 4.5 5.5 L 0 5.5 Z" fill="transparent" height="5.500000000000002px" id="FFcYQg9ko" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--1335ju, 1.5)" stroke="var(--18mrqx2, rgb(0, 0, 0))" transform="translate(9.75 13.749)" width="4.499969999999999px"/></svg>';
 const getProps = ({ dots, stroke, width1, ...props }) => {
   return {
@@ -22,7 +24,7 @@ const getProps = ({ dots, stroke, width1, ...props }) => {
     lKf_CQTz5: width1 ?? props.lKf_CQTz5 ?? 1.5,
   };
 };
-const Component = /*#__PURE__*/ React.forwardRef(function (props, ref) {
+const Component = /*#__PURE__*/ React.forwardRef(function Component(props, ref) {
   const { style, className, layoutId, fICyAUQY1, lKf_CQTz5, ...restProps } = getProps(props);
   const href = useSVGTemplate("763274199", svg);
   return /*#__PURE__*/ _jsx(SVG, {

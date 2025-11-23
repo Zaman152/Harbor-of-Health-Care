@@ -78,7 +78,7 @@ const WhyChooseUs: React.FC = () => {
               Private home health care aides offers assistance with daily tasks.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed mt-4">
-              We cater to individuals of all ages and abilities in Edmonton, Alberta. Harbor of Health Home Care Services provides personalized home care services tailored to the specific needs of each client, regardless of their age, disability, or other challenges they may face. Whether someone is dealing with a short-term disability, chronic illness, Alzheimer's disease, or recovering from surgery, Harbor of Health Home Care Services offers versatile support to meet their needs. <span className="font-semibold italic gradient-text">We are Here to Serve!</span>
+              We cater to individuals of all ages and abilities in Edmonton, Alberta. Harbor of Health Home Care Services provides personalized home care services tailored to the specific needs of each client, regardless of their age, disability, or other challenges they may face. Whether someone is dealing with a short-term disability, chronic illness, Alzheimer&apos;s disease, or recovering from surgery, Harbor of Health Home Care Services offers versatile support to meet their needs. <span className="font-semibold italic gradient-text">We are Here to Serve!</span>
             </p>
           </motion.div>
           

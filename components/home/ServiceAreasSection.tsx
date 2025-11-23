@@ -39,7 +39,7 @@ const ServiceAreasSection: React.FC = () => {
               Our devoted team is dedicated to delivering exceptional care services delivered with genuine compassion throughout the city and beyond.
             </p>
             <p className="text-lg text-gray-700 leading-relaxed font-medium">
-              Should you wish to inquire if we cover your locality, or for any additional information, do not hesitate to contact us. Get in touch with us today to gain more insight into our service territory and how we can fulfill your or your loved one's care requirements. <span className="font-semibold italic text-teal-600">We are Here to Serve!</span>
+              Should you wish to inquire if we cover your locality, or for any additional information, do not hesitate to contact us. Get in touch with us today to gain more insight into our service territory and how we can fulfill your or your loved one&apos;s care requirements. <span className="font-semibold italic text-teal-600">We are Here to Serve!</span>
             </p>
           </motion.div>
 

@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface GlassyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface GlassyButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onAnimationStart' | 'onAnimationEnd' | 'onAnimationIteration' | 'onDragStart' | 'onDrag' | 'onDragEnd'> {
   children: React.ReactNode;
   variant?: "default" | "nav";
   className?: string;

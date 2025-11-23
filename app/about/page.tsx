@@ -97,11 +97,11 @@ const AboutPage: React.FC = () => {
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
                     <span className="text-pink-500 mr-2">•</span>
-                    <span>Personalized care plans tailored to your or your loved one's unique needs.</span>
+                    <span>Personalized care plans tailored to your or your loved one&apos;s unique needs.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-pink-500 mr-2">•</span>
-                    <span>A team of dedicated professionals devoted to your or your loved one's well-being.</span>
+                    <span>A team of dedicated professionals devoted to your or your loved one&apos;s well-being.</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-pink-500 mr-2">•</span>
@@ -159,7 +159,7 @@ const AboutPage: React.FC = () => {
             </h2>
             <div className="max-w-4xl mx-auto">
               <p className="text-lg text-gray-700 leading-relaxed mb-6">
-                Here in Edmonton, Harbor of Health Home Care Services serves as the crucial link to a comprehensive healthcare experience. Apart from our devoted team of caregivers, we've established an extensive network of healthcare professionals to ensure you receive specialized care whenever necessary. This includes:
+                Here in Edmonton, Harbor of Health Home Care Services serves as the crucial link to a comprehensive healthcare experience. Apart from our devoted team of caregivers, we&apos;ve established an extensive network of healthcare professionals to ensure you receive specialized care whenever necessary. This includes:
               </p>
               <ul className="space-y-3 text-gray-700 mb-6">
                 <li className="flex items-start">
@@ -176,7 +176,7 @@ const AboutPage: React.FC = () => {
                 </li>
               </ul>
               <p className="text-lg text-gray-700 leading-relaxed">
-                Our dedication lies in your overall wellness. With Harbor of Health Home Care Services, you're not simply acquiring a caregiver; you're gaining a reliable ally with broad healthcare connections, guaranteeing an unparalleled care journey.
+                Our dedication lies in your overall wellness. With Harbor of Health Home Care Services, you&apos;re not simply acquiring a caregiver; you&apos;re gaining a reliable ally with broad healthcare connections, guaranteeing an unparalleled care journey.
               </p>
             </div>
           </motion.div>
@@ -250,7 +250,7 @@ const AboutPage: React.FC = () => {
               Elevate Your Care Services
             </h3>
             <p className="text-xl text-teal-50 max-w-3xl mx-auto leading-relaxed mb-6">
-              Enhance Your Home Care Experience with Harbor of Health Home Care Services! Are you ready to receive or provide your loved ones with the highest quality care possible? Harbor of Health offers comprehensive home care services customized to your unique needs. Whether you require assistance with daily tasks, companionship, or specialized care, we're here to support you every step of the way. Contact us today to arrange a consultation and elevate your care services to the next level.
+              Enhance Your Home Care Experience with Harbor of Health Home Care Services! Are you ready to receive or provide your loved ones with the highest quality care possible? Harbor of Health offers comprehensive home care services customized to your unique needs. Whether you require assistance with daily tasks, companionship, or specialized care, we&apos;re here to support you every step of the way. Contact us today to arrange a consultation and elevate your care services to the next level.
             </p>
             <Button
               variant="secondary"

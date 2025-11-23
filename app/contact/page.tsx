@@ -70,7 +70,7 @@ const ContactPage: React.FC = () => {
                   Get in Touch
                 </h3>
                 <p className="text-gray-700 leading-relaxed mb-8">
-                  We're available to discuss your or your loved one's care needs and answer any
+                  We&apos;re available to discuss your or your loved one&apos;s care needs and answer any
                   questions you may have. Reach out to us through any of the
                   following methods.
                 </p>
@@ -156,7 +156,7 @@ const ContactPage: React.FC = () => {
                   Our senior care planning process is a proactive one and focuses on taking preventative measures toward ensuring good health and well-being. We believe finding the best senior caregiver for yourself or your loved one is one of the most important choices you will ever have to make.
                 </p>
                 <p className="text-gray-700 leading-relaxed mb-6">
-                  We promise to make this process as simple as possible. We know finding the care you or your loved one needs is a process no one ever wants to go through, but sometimes life decides otherwise. Rest assured, we care and we've got you covered through this difficult process and time.
+                  We promise to make this process as simple as possible. We know finding the care you or your loved one needs is a process no one ever wants to go through, but sometimes life decides otherwise. Rest assured, we care and we&apos;ve got you covered through this difficult process and time.
                 </p>
 
                 {submitSuccess && (
@@ -165,7 +165,7 @@ const ContactPage: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className="mb-6 p-4 bg-pink-50 border-2 border-pink-200 rounded-lg text-pink-800"
                   >
-                    Thank you for reaching out! We'll contact you within 24 hours. We are Here to Serve!
+                    Thank you for reaching out! We&apos;ll contact you within 24 hours. We are Here to Serve!
                   </motion.div>
                 )}
 

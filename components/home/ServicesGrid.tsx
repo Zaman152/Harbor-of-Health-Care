@@ -99,7 +99,7 @@ const ServicesGrid: React.FC = () => {
           className="max-w-4xl mx-auto mb-12 text-center"
         >
           <p className="text-lg text-gray-700 leading-relaxed mb-4">
-            Your Trusted Partner in Quality Care. Whether you're seeking personalized assistance with daily tasks, Therapeutic companionship, or specialized care, our dedicated team is here to provide compassionate support tailored to your needs. Experience peace of mind knowing that exceptional care awaits you at Harbor of Health Home Care Services.
+            Your Trusted Partner in Quality Care. Whether you&apos;re seeking personalized assistance with daily tasks, Therapeutic companionship, or specialized care, our dedicated team is here to provide compassionate support tailored to your needs. Experience peace of mind knowing that exceptional care awaits you at Harbor of Health Home Care Services.
           </p>
         </motion.div>
 

@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
               </div>
             </Link>
             <p className="text-sm leading-relaxed italic mb-2 text-teal-400">
-              "We are Here to Serve!"
+              &quot;We are Here to Serve!&quot;
             </p>
             <p className="text-sm leading-relaxed">
               Our professional fun loving uplifting senior caregivers are ready to serve you with daily wholehearted home senior care today!
@@ -251,7 +251,7 @@ const Footer: React.FC = () => {
                 © {currentYear} Harbor of Health Home Care Services. All rights reserved.
               </p>
               <p className="text-sm text-teal-400 italic font-semibold">
-                "We are Here to Serve!"
+                &quot;We are Here to Serve!&quot;
               </p>
             </div>
             <div className="flex justify-center space-x-6 mt-4">
