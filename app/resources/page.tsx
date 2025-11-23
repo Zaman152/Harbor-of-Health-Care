@@ -89,13 +89,13 @@ const ResourcesPage: React.FC = () => {
                 >
                   <a
                     href="#"
-                    className="block bg-teal-50 hover:bg-teal-100 rounded-lg p-4 transition-colors group"
+                    className="block bg-pink-50 hover:bg-pink-100 rounded-lg p-4 transition-colors group border-2 border-transparent hover:border-pink-300"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-700 group-hover:text-teal-600 transition-colors">
+                      <span className="text-gray-700 group-hover:text-pink-600 transition-colors">
                         {resource}
                       </span>
-                      <ExternalLink className="w-4 h-4 text-teal-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ExternalLink className="w-4 h-4 text-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </a>
                 </motion.div>
@@ -107,16 +107,16 @@ const ResourcesPage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-12 bg-teal-50 rounded-xl p-8 text-center"
+              className="mt-12 bg-pink-50 rounded-xl p-8 text-center border-2 border-pink-200"
             >
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
                 Need help finding the right resource for you or your loved one?
               </p>
               <p className="text-gray-700 mb-6">
-                Contact us at <a href="tel:+17809060994" className="text-teal-600 font-semibold hover:text-teal-700">(780) 906-0994</a> or{" "}
-                <a href="mailto:hello@harborofhealthhomecare.com" className="text-teal-600 font-semibold hover:text-teal-700">hello@harborofhealthhomecare.com</a>
+                Contact us at <a href="tel:+17809060994" className="text-pink-600 font-semibold hover:text-pink-700">(780) 906-0994</a> or{" "}
+                <a href="mailto:hello@harborofhealthhomecare.com" className="text-pink-600 font-semibold hover:text-pink-700">hello@harborofhealthhomecare.com</a>
               </p>
-              <p className="text-teal-600 font-semibold italic">
+              <p className="text-pink-600 font-semibold italic">
                 We are Here to Serve!
               </p>
             </motion.div>

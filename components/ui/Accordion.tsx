@@ -22,7 +22,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
     <div className="border-b border-gray-200 last:border-b-0">
       <button
         onClick={onToggle}
-        className="w-full py-6 px-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-teal-500 rounded-lg transition-colors"
+        className="w-full py-6 px-4 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-pink-500 rounded-lg transition-colors"
         aria-expanded={isOpen}
         aria-controls={`answer-${question}`}
       >
@@ -35,7 +35,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({
           <ChevronDown
             className={cn(
               "w-6 h-6 transition-colors",
-              isOpen ? "text-teal-500" : "text-gray-400"
+              isOpen ? "text-pink-500" : "text-gray-400"
             )}
           />
         </motion.div>

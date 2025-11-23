@@ -25,8 +25,8 @@ const FundingSection: React.FC = () => {
           >
             <Card hover={false} className="text-center">
               <div className="flex justify-center mb-6">
-                <div className="w-20 h-20 rounded-full bg-teal-100 flex items-center justify-center">
-                  <DollarSign className="w-10 h-10 text-teal-500" />
+                <div className="w-20 h-20 rounded-full bg-pink-100 flex items-center justify-center border-2 border-pink-200">
+                  <DollarSign className="w-10 h-10 text-pink-500" />
                 </div>
               </div>
               <h3 className="font-heading text-2xl font-bold text-gray-900 mb-4">
@@ -37,21 +37,21 @@ const FundingSection: React.FC = () => {
               </p>
               <ul className="text-left space-y-3 mb-8 max-w-2xl mx-auto">
                 <li className="flex items-start space-x-3">
-                  <FileText className="w-6 h-6 text-teal-500 flex-shrink-0 mt-0.5" />
+                  <FileText className="w-6 h-6 text-pink-500 flex-shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-gray-900">Client Directed Home Care Invoicing (CDHCI)</strong>
                     <p className="text-gray-700 text-sm">A program that allows you to direct your home care funding to the provider of your choice</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <FileText className="w-6 h-6 text-teal-500 flex-shrink-0 mt-0.5" />
+                  <FileText className="w-6 h-6 text-pink-500 flex-shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-gray-900">Alberta Funding Programs</strong>
                     <p className="text-gray-700 text-sm">Various provincial programs designed to support home care services</p>
                   </div>
                 </li>
                 <li className="flex items-start space-x-3">
-                  <FileText className="w-6 h-6 text-teal-500 flex-shrink-0 mt-0.5" />
+                  <FileText className="w-6 h-6 text-pink-500 flex-shrink-0 mt-0.5" />
                   <div>
                     <strong className="text-gray-900">Financial Support Guidance</strong>
                     <p className="text-gray-700 text-sm">Our team can help you understand and access available funding options</p>

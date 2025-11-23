@@ -171,8 +171,8 @@ const ServicesPage: React.FC = () => {
                       className={`space-y-6 ${!isEven ? "lg:col-start-1 lg:row-start-1" : ""}`}
                     >
                       <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center">
-                          <Icon className="w-6 h-6 text-teal-500" />
+                        <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center border-2 border-pink-200">
+                          <Icon className="w-6 h-6 text-pink-500" />
                         </div>
                         <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900">
                           {service.title}
@@ -184,7 +184,7 @@ const ServicesPage: React.FC = () => {
                       <ul className="space-y-3">
                         {service.features.map((feature, idx) => (
                           <li key={idx} className="flex items-start space-x-3">
-                            <Check className="w-6 h-6 text-teal-500 flex-shrink-0 mt-0.5" />
+                            <Check className="w-6 h-6 text-pink-500 flex-shrink-0 mt-0.5" />
                             <span className="text-gray-700">{feature}</span>
                           </li>
                         ))}

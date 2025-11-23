@@ -29,10 +29,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       primary:
         "bg-teal-500 text-white hover:bg-teal-600 focus:ring-teal-500 shadow-md hover:shadow-lg",
       secondary:
-        "bg-gray-900 text-white hover:bg-gray-800 focus:ring-gray-900 shadow-md hover:shadow-lg",
+        "bg-pink-500 text-white hover:bg-pink-600 focus:ring-pink-500 shadow-md hover:shadow-lg border-2 border-pink-500 hover:border-pink-600",
       outline:
-        "border-2 border-teal-500 text-teal-500 hover:bg-teal-50 focus:ring-teal-500",
-      ghost: "text-teal-500 hover:bg-teal-50 focus:ring-teal-500",
+        "border-2 border-pink-500 text-pink-500 hover:bg-pink-50 focus:ring-pink-500 hover:border-pink-600",
+      ghost: "text-teal-500 hover:bg-teal-50 focus:ring-teal-500 hover:text-pink-500",
     };
 
     const sizes = {

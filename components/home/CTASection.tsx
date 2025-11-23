@@ -7,7 +7,7 @@ import Button from "@/components/ui/Button";
 
 const CTASection: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-teal-500 via-teal-600 to-cyan-500 relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-r from-teal-500 via-pink-500 to-cyan-400 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -54,7 +54,7 @@ const CTASection: React.FC = () => {
             className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
           >
             Get Exceptional Care delivered with{" "}
-            <span className="text-cyan-200">genuine compassion</span> Today!
+            <span className="text-pink-200">genuine compassion</span> Today!
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -81,7 +81,7 @@ const CTASection: React.FC = () => {
               <Button
                 variant="secondary"
                 size="lg"
-                className="bg-white text-teal-500 hover:bg-gray-100 shadow-xl"
+                className="bg-white text-pink-500 hover:bg-pink-50 shadow-xl border-2 border-pink-500"
                 onClick={() => (window.location.href = "/contact")}
               >
                 Schedule Free Consultation
@@ -91,7 +91,7 @@ const CTASection: React.FC = () => {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-2 border-white text-white hover:bg-white/20 backdrop-blur-sm"
+                className="border-2 border-pink-300 text-white hover:bg-pink-500/30 backdrop-blur-sm hover:border-pink-400"
                 onClick={() => (window.location.href = "tel:+17809060994")}
               >
                 <Phone className="w-5 h-5 mr-2" />

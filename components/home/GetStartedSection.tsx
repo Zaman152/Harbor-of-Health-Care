@@ -59,13 +59,13 @@ const GetStartedSection: React.FC = () => {
                 >
                   <Card hover className="text-center h-full">
                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                      <div className="w-12 h-12 rounded-full bg-teal-500 text-white flex items-center justify-center font-bold text-lg shadow-lg">
+                      <div className="w-12 h-12 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold text-lg shadow-lg border-2 border-pink-600">
                         {step.number}
                       </div>
                     </div>
                     <div className="mt-8 mb-6">
-                      <div className="w-16 h-16 rounded-full bg-teal-100 flex items-center justify-center mx-auto mb-4">
-                        <Icon className="w-8 h-8 text-teal-500" />
+                      <div className="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center mx-auto mb-4 border-2 border-pink-200">
+                        <Icon className="w-8 h-8 text-pink-500" />
                       </div>
                       <h3 className="font-heading text-xl font-bold text-gray-900 mb-3">
                         {step.title}
@@ -77,7 +77,7 @@ const GetStartedSection: React.FC = () => {
                         <ul className="text-sm text-gray-600 space-y-2 text-left">
                           {step.details.map((detail, idx) => (
                             <li key={idx} className="flex items-start">
-                              <ArrowRight className="w-4 h-4 text-teal-500 mr-2 flex-shrink-0 mt-0.5" />
+                              <ArrowRight className="w-4 h-4 text-pink-500 mr-2 flex-shrink-0 mt-0.5" />
                               <span>{detail}</span>
                             </li>
                           ))}

@@ -93,7 +93,7 @@ const ChatWidget: React.FC = () => {
                     Harbor Care Support
                   </p>
                   <p className="text-sm text-gray-500 flex items-center space-x-2">
-                    <span className="inline-flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="inline-flex h-2 w-2 rounded-full bg-pink-400 animate-pulse" />
                     <span>Typically replies within a few minutes</span>
                   </p>
                 </div>

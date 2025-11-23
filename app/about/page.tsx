@@ -96,15 +96,15 @@ const AboutPage: React.FC = () => {
                 </p>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
-                    <span className="text-teal-500 mr-2">•</span>
+                    <span className="text-pink-500 mr-2">•</span>
                     <span>Personalized care plans tailored to your or your loved one's unique needs.</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-teal-500 mr-2">•</span>
+                    <span className="text-pink-500 mr-2">•</span>
                     <span>A team of dedicated professionals devoted to your or your loved one's well-being.</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-teal-500 mr-2">•</span>
+                    <span className="text-pink-500 mr-2">•</span>
                     <span>Peace of mind knowing you or your loved ones are cared for by experts with genuine compassion.</span>
                   </li>
                 </ul>
@@ -123,7 +123,7 @@ const AboutPage: React.FC = () => {
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 text-center mb-6">
               Where Care Meets Genuine Hearts
             </h2>
-            <p className="text-2xl text-teal-600 font-semibold italic text-center mb-8">
+            <p className="text-2xl text-pink-600 font-semibold italic text-center mb-8">
               We are Here to Serve!
             </p>
             <div className="max-w-3xl mx-auto space-y-4">
@@ -241,7 +241,7 @@ const AboutPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-teal-500 to-teal-600 rounded-2xl p-8 md:p-12 text-center text-white"
+            className="bg-gradient-to-r from-teal-500 via-pink-500 to-cyan-400 rounded-2xl p-8 md:p-12 text-center text-white"
           >
             <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
               PREMIUM CARE AWAITS

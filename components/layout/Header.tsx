@@ -47,7 +47,7 @@ const Header: React.FC = () => {
                 className="relative"
               >
                 <Anchor className="w-8 h-8 text-teal-500" />
-                <Heart className="w-4 h-4 text-teal-500 absolute -top-1 -right-1" fill="currentColor" />
+                <Heart className="w-4 h-4 text-pink-500 absolute -top-1 -right-1" fill="currentColor" />
               </motion.div>
               <div className="flex flex-col">
                 <span className="font-heading text-xl font-bold text-gray-900 group-hover:text-teal-500 transition-colors leading-tight">
@@ -69,7 +69,7 @@ const Header: React.FC = () => {
                 >
                   {link.name}
                   <motion.span
-                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-400"
+                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-teal-500 via-pink-500 to-cyan-400"
                     initial={{ width: 0 }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.3 }}
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 text-gray-600 hover:text-white transition-colors"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-pink-500 text-gray-600 hover:text-white transition-colors border-2 border-transparent hover:border-pink-600"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4" />
@@ -95,7 +95,7 @@ const Header: React.FC = () => {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-teal-500 text-gray-600 hover:text-white transition-colors"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-pink-500 text-gray-600 hover:text-white transition-colors border-2 border-transparent hover:border-pink-600"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
@@ -116,7 +116,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 text-gray-700 hover:text-teal-500 transition-colors"
+              className="lg:hidden p-2 text-gray-700 hover:text-pink-500 transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
             >

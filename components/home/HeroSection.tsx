@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
               height: shape.size,
               left: shape.x,
               top: shape.y,
-              background: `linear-gradient(135deg, rgba(31, 162, 174, 0.1), rgba(45, 212, 191, 0.05))`,
+              background: `linear-gradient(135deg, rgba(110, 198, 255, 0.1), rgba(168, 225, 255, 0.05))`,
             }}
             animate={{
               y: [0, -30, 0],
@@ -113,7 +113,7 @@ const HeroSection: React.FC = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="text-lg px-8 py-4 border-2 border-teal-500 hover:bg-teal-500 hover:text-white transition-all"
+                  className="text-lg px-8 py-4 border-2 border-pink-500 hover:bg-pink-500 hover:text-white transition-all"
                   onClick={() => (window.location.href = "tel:+17809060994")}
                 >
                   Call (780) 906-0994
@@ -140,9 +140,9 @@ const HeroSection: React.FC = () => {
                     whileHover={{ scale: 1.2, rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <Check className="w-5 h-5 text-teal-500 flex-shrink-0" />
+                    <Check className="w-5 h-5 text-pink-500 flex-shrink-0" />
                   </motion.div>
-                  <span className="text-gray-700 group-hover:text-teal-600 transition-colors">
+                  <span className="text-gray-700 group-hover:text-pink-600 transition-colors">
                     {feature}
                   </span>
                 </motion.div>
@@ -163,7 +163,7 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="relative rounded-2xl overflow-hidden shadow-2xl"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/30 to-cyan-500/20 z-10" />
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/30 via-pink-500/20 to-cyan-500/20 z-10" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10" />
               <Image
                 src="/images/img-96as.webp"
@@ -174,7 +174,7 @@ const HeroSection: React.FC = () => {
                 priority
               />
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-400/20 via-transparent to-cyan-400/20 z-10 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-400/20 via-pink-400/15 to-cyan-400/20 z-10 pointer-events-none" />
             </motion.div>
           </motion.div>
         </div>
@@ -236,7 +236,7 @@ const HeroSection: React.FC = () => {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center space-y-2 text-teal-500"
+          className="flex flex-col items-center space-y-2 text-pink-500"
         >
           <span className="text-sm font-medium">Scroll to explore</span>
           <ChevronDown className="w-6 h-6" />

@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-gray-300 relative overflow-hidden">
       {/* Decorative wave at top */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-cyan-400 to-teal-500" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-500 via-pink-500 to-cyan-400" />
       
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
                 transition={{ duration: 0.3 }}
               >
                 <Anchor className="w-6 h-6 text-teal-500" />
-                <Heart className="w-3 h-3 text-teal-500 absolute -top-0.5 -right-0.5" fill="currentColor" />
+                <Heart className="w-3 h-3 text-pink-500 absolute -top-0.5 -right-0.5" fill="currentColor" />
               </motion.div>
               <div className="flex flex-col">
                 <span className="font-heading text-lg font-bold text-white group-hover:text-teal-500 transition-colors leading-tight">
@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-teal-500 transition-colors"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-pink-500 transition-colors border-2 border-transparent hover:border-pink-600"
                     aria-label={social.label}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
@@ -131,7 +131,7 @@ const Footer: React.FC = () => {
                 >
                   <Link
                     href={link.href}
-                    className="text-sm hover:text-teal-500 transition-colors inline-block group"
+                    className="text-sm hover:text-pink-500 transition-colors inline-block group"
                   >
                     <span className="group-hover:translate-x-1 inline-block transition-transform">
                       {link.name}
@@ -163,7 +163,7 @@ const Footer: React.FC = () => {
                 >
                   <Link
                     href={service.href}
-                    className="text-sm hover:text-teal-500 transition-colors inline-block group"
+                    className="text-sm hover:text-pink-500 transition-colors inline-block group"
                   >
                     <span className="group-hover:translate-x-1 inline-block transition-transform">
                       {service.name}
@@ -190,10 +190,10 @@ const Footer: React.FC = () => {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <Phone className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
+                <Phone className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
                 <a
                   href="tel:+17809060994"
-                  className="text-sm hover:text-teal-500 transition-colors"
+                  className="text-sm hover:text-pink-500 transition-colors"
                 >
                   (780) 906-0994
                 </a>
@@ -203,10 +203,10 @@ const Footer: React.FC = () => {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <Mail className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
+                <Mail className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
                 <a
                   href="mailto:hello@harborofhealthhomecare.com"
-                  className="text-sm hover:text-teal-500 transition-colors"
+                  className="text-sm hover:text-pink-500 transition-colors"
                 >
                   hello@harborofhealthhomecare.com
                 </a>
@@ -216,7 +216,7 @@ const Footer: React.FC = () => {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <MapPin className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
                   Serving the Greater Edmonton Area<br />
                   and Beyond
@@ -227,7 +227,7 @@ const Footer: React.FC = () => {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <Clock className="w-5 h-5 text-teal-500 flex-shrink-0 mt-0.5" />
+                <Clock className="w-5 h-5 text-pink-500 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">
                   Mon-Sun: 8:00 AM - 10:00 PM<br />
                   Available 7 days a week
@@ -257,13 +257,13 @@ const Footer: React.FC = () => {
             <div className="flex justify-center space-x-6 mt-4">
               <Link
                 href="/privacy"
-                className="text-sm text-gray-400 hover:text-teal-500 transition-colors"
+                className="text-sm text-gray-400 hover:text-pink-500 transition-colors"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-gray-400 hover:text-teal-500 transition-colors"
+                className="text-sm text-gray-400 hover:text-pink-500 transition-colors"
               >
                 Terms of Service
               </Link>

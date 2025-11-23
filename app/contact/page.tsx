@@ -78,14 +78,14 @@ const ContactPage: React.FC = () => {
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-teal-500" />
+                  <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 border-2 border-pink-200">
+                    <Phone className="w-6 h-6 text-pink-500" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
                     <a
                       href="tel:+17809060994"
-                      className="text-teal-500 hover:text-teal-600 transition-colors"
+                      className="text-pink-500 hover:text-pink-600 transition-colors"
                     >
                       (780) 906-0994
                     </a>
@@ -93,14 +93,14 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-teal-500" />
+                  <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 border-2 border-pink-200">
+                    <Mail className="w-6 h-6 text-pink-500" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
                     <a
                       href="mailto:hello@harborofhealthhomecare.com"
-                      className="text-teal-500 hover:text-teal-600 transition-colors"
+                      className="text-pink-500 hover:text-pink-600 transition-colors"
                     >
                       hello@harborofhealthhomecare.com
                     </a>
@@ -108,8 +108,8 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-teal-500" />
+                  <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 border-2 border-pink-200">
+                    <MapPin className="w-6 h-6 text-pink-500" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">
@@ -124,8 +124,8 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-teal-500" />
+                  <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 border-2 border-pink-200">
+                    <Clock className="w-6 h-6 text-pink-500" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">
@@ -163,7 +163,7 @@ const ContactPage: React.FC = () => {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800"
+                    className="mb-6 p-4 bg-pink-50 border-2 border-pink-200 rounded-lg text-pink-800"
                   >
                     Thank you for reaching out! We'll contact you within 24 hours. We are Here to Serve!
                   </motion.div>

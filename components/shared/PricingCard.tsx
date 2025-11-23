@@ -31,7 +31,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
     >
       {isPopular && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-          <span className="bg-teal-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+          <span className="bg-pink-500 text-white px-4 py-1 rounded-full text-sm font-semibold border-2 border-pink-600">
             MOST POPULAR
           </span>
         </div>
@@ -40,8 +40,8 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         hover={false}
         className={`h-full flex flex-col ${
           isPopular
-            ? "border-2 border-teal-500 shadow-xl scale-105"
-            : "border border-gray-200"
+            ? "border-2 border-pink-500 shadow-xl scale-105"
+            : "border-2 border-pink-200"
         }`}
       >
         <div className="text-center mb-6">
@@ -49,14 +49,14 @@ export const PricingCard: React.FC<PricingCardProps> = ({
             {title}
           </h3>
           <div className="mb-4">
-            <span className="text-4xl font-bold text-teal-500">{price}</span>
+            <span className="text-4xl font-bold text-pink-500">{price}</span>
             <span className="text-gray-600 ml-2">/hour</span>
           </div>
         </div>
         <ul className="space-y-3 flex-grow mb-6">
           {features.map((feature, idx) => (
             <li key={idx} className="flex items-start">
-              <Check className="w-5 h-5 text-teal-500 flex-shrink-0 mr-2 mt-0.5" />
+              <Check className="w-5 h-5 text-pink-500 flex-shrink-0 mr-2 mt-0.5" />
               <span className="text-gray-700">{feature}</span>
             </li>
           ))}
