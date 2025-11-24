@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, Send, X } from "lucide-react";
 
@@ -24,10 +24,19 @@ const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => setIsOpen((prev) => !prev);
 
-  const handleSendMessage = () => {
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  const handleSendMessage = async () => {
     const trimmed = inputValue.trim();
     if (!trimmed) return;
 
@@ -43,29 +52,41 @@ const ChatWidget: React.FC = () => {
       time: timestamp,
     };
 
-    const botMessage: Message = {
-      id: Date.now() + 1,
-      sender: "bot",
-      text: "Thanks for sharing! A care coordinator will reach out shortly. Feel free to leave your phone number for faster support.",
-      time: "Just now",
-    };
-
-    setMessages((prev) => [...prev, userMessage, botMessage]);
+    // Add user message immediately
+    setMessages((prev) => [...prev, userMessage]);
     setInputValue("");
 
-    // Send message to webhook (non-blocking)
-    fetch("https://hoh.app.n8n.cloud/webhook/d079e4d9-a3e9-4054-8b50-f0222c75e880", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        Message: trimmed,
-      }),
-    }).catch((error) => {
+    // Send message to webhook and wait for response
+    try {
+      const response = await fetch("https://hoh.app.n8n.cloud/webhook/d079e4d9-a3e9-4054-8b50-f0222c75e880", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Message: trimmed,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        // Check if n8n returned a response message in various possible formats
+        const botResponseText = data?.response || data?.message || data?.text || data?.Reply || data?.reply || data?.Response || data?.Message || (typeof data === 'string' ? data : null);
+        
+        if (botResponseText && typeof botResponseText === 'string') {
+          const botMessage: Message = {
+            id: Date.now() + 1,
+            sender: "bot",
+            text: botResponseText,
+            time: "Just now",
+          };
+          setMessages((prev) => [...prev, botMessage]);
+        }
+      }
+    } catch (error) {
       // Fail silently but log errors for debugging
       console.error("Failed to send message to webhook:", error);
-    });
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -121,7 +142,10 @@ const ChatWidget: React.FC = () => {
               </div>
 
               {/* Messages */}
-              <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-teal-400/60 scrollbar-track-transparent">
+              <div 
+                ref={messagesContainerRef}
+                className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-teal-400/60 scrollbar-track-transparent"
+              >
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -149,6 +173,7 @@ const ChatWidget: React.FC = () => {
                     </div>
                   </div>
                 ))}
+                <div ref={messagesEndRef} />
               </div>
 
               {/* Input */}
