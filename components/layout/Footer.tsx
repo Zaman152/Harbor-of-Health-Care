@@ -2,8 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Anchor, Heart, Facebook, Instagram, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Facebook, Instagram, Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -64,11 +65,16 @@ const Footer: React.FC = () => {
             <Link href="/" className="flex items-center space-x-2 group">
               <motion.div
                 className="relative"
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
               >
-                <Anchor className="w-6 h-6 text-teal-500" />
-                <Heart className="w-3 h-3 text-pink-500 absolute -top-0.5 -right-0.5" fill="currentColor" />
+                <Image
+                  src="/images/logo.png"
+                  alt="Harbor of Health Home Care Services"
+                  width={140}
+                  height={50}
+                  className="h-12 w-auto object-contain"
+                />
               </motion.div>
               <div className="flex flex-col">
                 <span className="font-heading text-lg font-bold text-white group-hover:text-teal-500 transition-colors leading-tight">

@@ -69,7 +69,7 @@ const AboutPage: React.FC = () => {
               className="relative rounded-2xl overflow-hidden shadow-2xl"
             >
               <Image
-                src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&h=600&fit=crop"
+                src="/images/Boutique HomeCare IMage.jpeg"
                 alt="Caregiver with elderly patient"
                 width={800}
                 height={600}

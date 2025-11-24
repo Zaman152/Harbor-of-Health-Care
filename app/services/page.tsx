@@ -23,7 +23,7 @@ const ServicesPage: React.FC = () => {
       icon: Users,
       title: "Companionship Care",
       order: 6,
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop",
+      image: "/images/Companion Care.jpg",
       description:
         "Providing daily social interaction, caregiving, and emotional support, engaging in activities tailored to their interests.",
       features: [
@@ -38,7 +38,7 @@ const ServicesPage: React.FC = () => {
       icon: Heart,
       title: "Palliative Care",
       order: 5,
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
+      image: "/images/Palliative Care.jpg",
       description:
         "Home-based palliative care eases patients' pain, symptoms and emotional strain while providing compassionate and supportive assistance.",
       features: [
@@ -53,7 +53,7 @@ const ServicesPage: React.FC = () => {
       icon: RefreshCw,
       title: "Respite Care",
       order: 4,
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop",
+      image: "/images/Respite Care.jpg",
       description:
         "Offering primary caregivers much-needed relief, experienced caregivers step in to support while you recharge or attend to other responsibilities.",
       features: [
@@ -68,7 +68,7 @@ const ServicesPage: React.FC = () => {
       icon: Sparkles,
       title: "Homemaking Services",
       order: 3,
-      image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&h=600&fit=crop",
+      image: "/images/homecare services.jpg",
       description:
         "Homemaking aid helps seniors stay at home longer by alleviating the challenges of managing household tasks due to aging-related factors.",
       features: [
@@ -83,7 +83,7 @@ const ServicesPage: React.FC = () => {
       icon: Stethoscope,
       title: "Post-Surgery Care",
       order: 2,
-      image: "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=800&h=600&fit=crop",
+      image: "/images/postsurgery care.jpg",
       description:
         "Ensure a smoother recovery and better outcomes with Personalized post-surgical care, medication management and rehab support.",
       features: [
@@ -98,7 +98,7 @@ const ServicesPage: React.FC = () => {
       icon: Building2,
       title: "In-Facility care",
       order: 1,
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=600&fit=crop",
+      image: "/images/infacility care.jpg",
       description:
         "From daily check-ins to comprehensive 24-hour care, it allows families to recharge while ensuring their loved one's well-being.",
       features: [

@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Heart, Anchor, Facebook, Instagram } from "lucide-react";
+import { Menu, X, Phone, Facebook, Instagram } from "lucide-react";
 import Button from "@/components/ui/Button";
 import MobileMenu from "./MobileMenu";
 
@@ -40,14 +41,20 @@ const Header: React.FC = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2 group">
+            <Link href="/" className="flex items-center space-x-3 group">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
                 className="relative"
               >
-                <Anchor className="w-8 h-8 text-blue-500" />
-                <Heart className="w-4 h-4 text-blue-500 absolute -top-1 -right-1" fill="currentColor" />
+                <Image
+                  src="/images/logo.png"
+                  alt="Harbor of Health Home Care Services"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto object-contain"
+                  priority
+                />
               </motion.div>
               <div className="flex flex-col">
                 <span className="font-heading text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-tight">
