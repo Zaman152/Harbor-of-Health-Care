@@ -21,7 +21,7 @@ const CTASection: React.FC = () => {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-xl">
               <Image
-                src="/images/img-96as.webp"
+                src="/images/second image.webp"
                 alt="Professional caregiver"
                 width={600}
                 height={700}

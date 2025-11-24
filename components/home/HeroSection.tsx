@@ -214,7 +214,7 @@ const HeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-blue-50 to-cyan-100 rounded-3xl -z-10 transform scale-105" />
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
                 <Image
-                  src="/images/img-96as.webp"
+                  src="/images/first image.jpg"
                   alt="Professional caregiver assisting elderly patient"
                   width={800}
                   height={1000}
