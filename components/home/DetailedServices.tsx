@@ -14,9 +14,8 @@ import {
   Ear,
   Move,
   MoreHorizontal,
+  ArrowRight,
 } from "lucide-react";
-import SectionTitle from "@/components/shared/SectionTitle";
-import Card from "@/components/ui/Card";
 
 const DetailedServices: React.FC = () => {
   const services = [
@@ -88,16 +87,22 @@ const DetailedServices: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-teal-50 via-cream to-white">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle
-          title="Our Team of Certified Health Care Aides"
-          subtitle="Professional support for various daily living activities"
-        />
+        <div className="mb-12 text-center">
+          <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Our Team of Certified Health Care Aides
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Professional support for various daily living activities
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
+            // Highlight the first card with light blue gradient
+            const isHighlighted = index === 0;
             return (
               <motion.div
                 key={service.title}
@@ -105,22 +110,51 @@ const DetailedServices: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="h-full"
               >
-                <Card hover className="h-full">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-6 h-6 text-teal-500" />
+                <div className={`h-full p-6 rounded-2xl shadow-md transition-all duration-300 ${
+                  isHighlighted 
+                    ? "bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-100" 
+                    : "bg-white hover:shadow-lg"
+                }`}>
+                  <div className="flex flex-col h-full">
+                    {/* Icon top-left */}
+                    <div className="mb-4">
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                        isHighlighted 
+                          ? "bg-blue-100" 
+                          : "bg-blue-50"
+                      }`}>
+                        <Icon className={`w-6 h-6 ${
+                          isHighlighted 
+                            ? "text-blue-600" 
+                            : "text-blue-500"
+                        }`} />
+                      </div>
                     </div>
-                    <div className="flex-grow">
-                      <h3 className="font-heading text-lg font-bold text-gray-900 mb-2">
-                        {service.title}:
+                    
+                    {/* Title and Description */}
+                    <div className="flex-grow mb-4">
+                      <h3 className="font-heading text-lg font-bold text-gray-900 mb-3">
+                        {service.title}
                       </h3>
-                      <p className="text-gray-700 text-sm leading-relaxed">
+                      <p className="text-gray-600 text-sm leading-relaxed">
                         {service.description}
                       </p>
                     </div>
+                    
+                    {/* Arrow button bottom-right */}
+                    <div className="flex justify-end mt-auto">
+                      <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
+                        isHighlighted
+                          ? "bg-blue-600 hover:bg-blue-700 text-white"
+                          : "bg-blue-50 hover:bg-blue-100 text-blue-600"
+                      }`}>
+                        <ArrowRight className="w-5 h-5" />
+                      </button>
+                    </div>
                   </div>
-                </Card>
+                </div>
               </motion.div>
             );
           })}

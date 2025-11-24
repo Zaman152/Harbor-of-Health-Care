@@ -26,10 +26,10 @@ const StatCard: React.FC<{
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -8, scale: 1.02 }}
-      className="glass-card p-6 text-center"
+      whileHover={{ y: -4, scale: 1.02 }}
+      className="bg-white p-6 rounded-2xl shadow-md text-center hover:shadow-lg transition-shadow"
     >
-      <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
+      <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
         {stat.isText ? (
           stat.label
         ) : (
@@ -44,7 +44,7 @@ const StatCard: React.FC<{
           </>
         )}
       </div>
-      <div className="text-gray-700 font-medium">{stat.label}</div>
+      <div className="text-gray-600 font-medium">{stat.label}</div>
     </motion.div>
   );
 };
@@ -77,9 +77,15 @@ const HeroSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-gradient-to-br from-teal-50 via-white to-cyan-50">
-      {/* Floating Background Shapes */}
+    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-white">
+      {/* Light-blue wave shapes background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <svg className="absolute bottom-0 left-0 w-full h-64" viewBox="0 0 1200 200" preserveAspectRatio="none">
+          <path d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z" fill="rgba(219, 234, 254, 0.4)" />
+        </svg>
+        <svg className="absolute bottom-0 left-0 w-full h-48" viewBox="0 0 1200 200" preserveAspectRatio="none">
+          <path d="M0,120 Q400,80 800,120 T1200,120 L1200,200 L0,200 Z" fill="rgba(191, 219, 254, 0.3)" />
+        </svg>
         {floatingShapes.map((shape, index) => (
           <motion.div
             key={index}
@@ -89,7 +95,7 @@ const HeroSection: React.FC = () => {
               height: shape.size,
               left: shape.x,
               top: shape.y,
-              background: `linear-gradient(135deg, rgba(110, 198, 255, 0.1), rgba(168, 225, 255, 0.05))`,
+              background: `linear-gradient(135deg, rgba(219, 234, 254, 0.3), rgba(191, 219, 254, 0.2))`,
             }}
             animate={{
               y: [0, -30, 0],
@@ -106,13 +112,13 @@ const HeroSection: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="lg:col-span-3 space-y-8"
+            className="space-y-8"
           >
             <div className="space-y-6">
               <motion.h1
@@ -122,13 +128,13 @@ const HeroSection: React.FC = () => {
                 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
               >
                 We connect seniors with their{" "}
-                <span className="gradient-text">ideal caregivers</span>
+                <span className="text-blue-600">ideal caregivers</span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl"
+                className="text-lg md:text-xl text-gray-600 leading-relaxed"
               >
                 We provide personalized care, designed to meet your or your loved one&apos;s unique care needs. Our extensive network consists of thoroughly vetted, educated, bonded, and certified caregivers who are dedicated to providing exceptional care delivered with genuine compassion for you or your loved one.
               </motion.p>
@@ -140,21 +146,21 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
                   variant="primary"
                   size="lg"
-                  className="text-lg px-8 py-4 gradient-btn"
+                  className="text-lg px-8 py-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-lg"
                   onClick={() => (window.location.href = "/contact")}
                 >
                   Book a Free Consultation
                 </Button>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
                   variant="outline"
                   size="lg"
-                  className="text-lg px-8 py-4 border-2 border-pink-500 hover:bg-pink-500 hover:text-white transition-all"
+                  className="text-lg px-8 py-4 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-all"
                   onClick={() => (window.location.href = "tel:+17809060994")}
                 >
                   Call (780) 906-0994
@@ -178,12 +184,12 @@ const HeroSection: React.FC = () => {
                   className="flex items-center space-x-2 group"
                 >
                   <motion.div
-                    whileHover={{ scale: 1.2, rotate: 360 }}
-                    transition={{ duration: 0.5 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <Check className="w-5 h-5 text-pink-500 flex-shrink-0" />
+                    <Check className="w-5 h-5 text-blue-600 flex-shrink-0" />
                   </motion.div>
-                  <span className="text-gray-700 group-hover:text-pink-600 transition-colors">
+                  <span className="text-gray-700 group-hover:text-blue-600 transition-colors text-sm">
                     {feature}
                   </span>
                 </motion.div>
@@ -191,31 +197,31 @@ const HeroSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Image with Parallax */}
+          {/* Right Column - Image with Soft Blue Gradient Shape */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             style={{ y, opacity }}
-            className="lg:col-span-2 relative"
+            className="relative"
           >
             <motion.div
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="relative rounded-2xl overflow-hidden shadow-2xl"
+              className="relative rounded-3xl overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/30 via-pink-500/20 to-cyan-500/20 z-10" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10" />
-              <Image
-                src="/images/img-96as.webp"
-                alt="Professional caregiver assisting elderly patient"
-                width={800}
-                height={1000}
-                className="w-full h-[500px] md:h-[600px] object-cover"
-                priority
-              />
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-400/20 via-pink-400/15 to-cyan-400/20 z-10 pointer-events-none" />
+              {/* Soft blue gradient background shape */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-blue-50 to-cyan-100 rounded-3xl -z-10 transform scale-105" />
+              <div className="relative rounded-3xl overflow-hidden shadow-xl">
+                <Image
+                  src="/images/img-96as.webp"
+                  alt="Professional caregiver assisting elderly patient"
+                  width={800}
+                  height={1000}
+                  className="w-full h-[500px] md:h-[600px] object-cover"
+                  priority
+                />
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -244,7 +250,7 @@ const HeroSection: React.FC = () => {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center space-y-2 text-pink-500"
+          className="flex flex-col items-center space-y-2 text-blue-600"
         >
           <span className="text-sm font-medium">Scroll to explore</span>
           <ChevronDown className="w-6 h-6" />

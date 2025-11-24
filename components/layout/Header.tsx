@@ -33,8 +33,8 @@ const Header: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "glass-nav shadow-lg py-3"
-            : "bg-white/80 backdrop-blur-md py-4"
+            ? "bg-white shadow-sm py-3"
+            : "bg-white py-4"
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,18 +42,18 @@ const Header: React.FC = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 group">
               <motion.div
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.3 }}
                 className="relative"
               >
-                <Anchor className="w-8 h-8 text-teal-500" />
-                <Heart className="w-4 h-4 text-pink-500 absolute -top-1 -right-1" fill="currentColor" />
+                <Anchor className="w-8 h-8 text-blue-500" />
+                <Heart className="w-4 h-4 text-blue-500 absolute -top-1 -right-1" fill="currentColor" />
               </motion.div>
               <div className="flex flex-col">
-                <span className="font-heading text-xl font-bold text-gray-900 group-hover:text-teal-500 transition-colors leading-tight">
+                <span className="font-heading text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-tight">
                   Harbor of Health
                 </span>
-                <span className="font-heading text-xs text-gray-600 group-hover:text-teal-600 transition-colors">
+                <span className="font-heading text-xs text-gray-600 group-hover:text-blue-600 transition-colors">
                   Home Care Services
                 </span>
               </div>
@@ -65,11 +65,11 @@ const Header: React.FC = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="relative text-gray-700 font-medium hover:text-teal-500 transition-colors group"
+                  className="relative text-gray-700 font-medium hover:text-blue-600 transition-colors group text-sm"
                 >
                   {link.name}
                   <motion.span
-                    className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-teal-500 via-pink-500 to-cyan-400"
+                    className="absolute bottom-0 left-0 h-0.5 bg-blue-500"
                     initial={{ width: 0 }}
                     whileHover={{ width: "100%" }}
                     transition={{ duration: 0.3 }}
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-pink-500 text-gray-600 hover:text-white transition-colors border-2 border-transparent hover:border-pink-600"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600 transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4" />
@@ -95,7 +95,7 @@ const Header: React.FC = () => {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-pink-500 text-gray-600 hover:text-white transition-colors border-2 border-transparent hover:border-pink-600"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600 transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
@@ -116,7 +116,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 text-gray-700 hover:text-pink-500 transition-colors"
+              className="lg:hidden p-2 text-gray-700 hover:text-blue-600 transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
             >
