@@ -114,7 +114,7 @@ const DetailedServices: React.FC = () => {
               >
                 <div className={`h-full p-6 rounded-2xl shadow-md transition-all duration-300 ${
                   isHighlighted 
-                    ? "bg-gradient-to-br from-blue-50 to-cyan-50 border-2 border-blue-100" 
+                    ? "bg-gradient-to-br from-pink-50 to-pink-100 border-2 border-pink-200" 
                     : "bg-white hover:shadow-lg"
                 }`}>
                   <div className="flex flex-col h-full">
@@ -122,13 +122,13 @@ const DetailedServices: React.FC = () => {
                     <div className="mb-4">
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
                         isHighlighted 
-                          ? "bg-blue-100" 
-                          : "bg-blue-50"
+                          ? "bg-pink-100" 
+                          : "bg-pink-50"
                       }`}>
                         <Icon className={`w-6 h-6 ${
                           isHighlighted 
-                            ? "text-blue-600" 
-                            : "text-blue-500"
+                            ? "text-pink-500" 
+                            : "text-pink-400"
                         }`} />
                       </div>
                     </div>
@@ -147,8 +147,8 @@ const DetailedServices: React.FC = () => {
                     <div className="flex justify-end mt-auto">
                       <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
                         isHighlighted
-                          ? "bg-blue-600 hover:bg-blue-700 text-white"
-                          : "bg-blue-50 hover:bg-blue-100 text-blue-600"
+                          ? "bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 hover:from-pink-600 hover:via-pink-500 hover:to-pink-400 text-white"
+                          : "bg-pink-50 hover:bg-pink-100 text-pink-500"
                       }`}>
                         <ArrowRight className="w-5 h-5" />
                       </button>

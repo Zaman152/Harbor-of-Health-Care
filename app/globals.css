@@ -30,13 +30,13 @@
     -webkit-backdrop-filter: blur(10px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 16px;
-    box-shadow: 0 8px 32px 0 rgba(110, 198, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(255, 122, 197, 0.15);
     transition: all 0.3s ease;
   }
 
   .glass-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 16px 48px 0 rgba(110, 198, 255, 0.25);
+    box-shadow: 0 16px 48px 0 rgba(255, 122, 197, 0.25);
     background: rgba(255, 255, 255, 0.15);
   }
 
@@ -49,7 +49,7 @@
 
   /* Gradient Text */
   .gradient-text {
-    background: linear-gradient(135deg, #6EC6FF, #A8E1FF, #FF9ECF);
+    background: linear-gradient(135deg, #FF4FA3, #FF7AC5, #FFD2EB);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -57,7 +57,7 @@
 
   /* Animated Gradient */
   .animated-gradient {
-    background: linear-gradient(270deg, #6EC6FF, #A8E1FF, #FF9ECF, #6EC6FF);
+    background: linear-gradient(270deg, #FF4FA3, #FF7AC5, #FFD2EB, #FF4FA3);
     background-size: 200% 200%;
     animation: gradient-shift 8s ease infinite;
   }
@@ -70,15 +70,15 @@
 
   /* Gradient Button */
   .gradient-btn {
-    background: linear-gradient(135deg, #6EC6FF, #A8E1FF);
+    background: linear-gradient(135deg, #FF4FA3, #FF7AC5);
     color: white;
     transition: all 0.3s ease;
   }
 
   .gradient-btn:hover {
-    background: linear-gradient(135deg, #A8E1FF, #FF9ECF);
+    background: linear-gradient(135deg, #FF7AC5, #FFD2EB);
     transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(110, 198, 255, 0.4), 0 5px 15px rgba(255, 158, 207, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 122, 197, 0.4), 0 5px 15px rgba(255, 158, 207, 0.3);
   }
 
   /* Organic Shapes */
@@ -101,9 +101,40 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #6EC6FF, #A8E1FF, #FF9ECF);
+    background: linear-gradient(90deg, #FF4FA3, #FF7AC5, #FFD2EB);
     transform-origin: left;
     z-index: 9999;
+  }
+
+  /* Brand Text Styling - Matching Reference Image */
+  .brand-text-harbor {
+    font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #111827; /* dark gray/black */
+  }
+
+  .brand-text-services {
+    font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem; /* 12px */
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #111827; /* dark gray/black */
+  }
+
+  .brand-text-serve {
+    font-family: var(--font-plus-jakarta), system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 0.625rem; /* 10px */
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: #FF9ECF; /* bright pink */
   }
 }
 
@@ -122,12 +153,12 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #6EC6FF, #A8E1FF, #FF9ECF);
+  background: linear-gradient(180deg, #FF4FA3, #FF7AC5, #FFD2EB);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #FF9ECF, #A8E1FF, #6EC6FF);
+    background: linear-gradient(180deg, #FFD2EB, #FF7AC5, #FF4FA3);
 }
 
 /* Reduced Motion */

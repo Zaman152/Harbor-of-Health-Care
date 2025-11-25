@@ -47,7 +47,7 @@ const CTASection: React.FC = () => {
                 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
               >
                 Get Exceptional Care delivered with{" "}
-                <span className="text-blue-600">genuine compassion</span> Today!
+                <span className="bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent">genuine compassion</span> Today!
               </motion.h2>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -60,7 +60,7 @@ const CTASection: React.FC = () => {
                   Our care planning process is a proactive one and focuses on taking preventative measures toward ensuring good health and well-being for as long as possible. We believe finding the best caregiver for you or your loved one is one of the most important choices you will ever need to make.
                 </p>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  We promise to make this process as simple as possible. We know finding the care you or your loved one needs is a process no one ever wants to go through, but sometimes life decides otherwise. Rest assured, we care and we&apos;ve got you covered through this difficult process or time. <span className="font-semibold italic text-blue-600">We are here to Serve!</span>
+                  We promise to make this process as simple as possible. We know finding the care you or your loved one needs is a process no one ever wants to go through, but sometimes life decides otherwise. Rest assured, we care and we&apos;ve got you covered through this difficult process or time. <span className="font-semibold italic bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent">We are here to Serve!</span>
                 </p>
               </motion.div>
               <motion.div
@@ -74,7 +74,7 @@ const CTASection: React.FC = () => {
                   <Button
                     variant="primary"
                     size="lg"
-                    className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg rounded-full px-8 py-4"
+                    className="bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 hover:from-pink-600 hover:via-pink-500 hover:to-pink-400 text-white shadow-lg rounded-full px-8 py-4"
                     onClick={() => (window.location.href = "/contact")}
                   >
                     Schedule Free Consultation
@@ -84,7 +84,7 @@ const CTASection: React.FC = () => {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="border-2 border-blue-600 text-blue-600 hover:bg-blue-50 rounded-full px-8 py-4"
+                    className="border-2 border-pink-500 text-pink-500 hover:bg-gradient-to-br hover:from-pink-50 hover:via-pink-100 hover:to-pink-50 rounded-full px-8 py-4"
                     onClick={() => (window.location.href = "tel:+17809060994")}
                   >
                     <Phone className="w-5 h-5 mr-2" />

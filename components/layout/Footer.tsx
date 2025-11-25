@@ -77,10 +77,10 @@ const Footer: React.FC = () => {
                 />
               </motion.div>
               <div className="flex flex-col">
-                <span className="font-heading text-lg font-bold text-white group-hover:text-teal-500 transition-colors leading-tight">
+                <span className="brand-text-harbor text-white">
                   Harbor of Health
                 </span>
-                <span className="font-heading text-xs text-gray-400 group-hover:text-teal-400 transition-colors">
+                <span className="brand-text-services text-white">
                   Home Care Services
                 </span>
               </div>

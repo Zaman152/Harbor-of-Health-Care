@@ -88,7 +88,7 @@ const AboutPage: React.FC = () => {
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                   WHO WE ARE
                 </h2>
-                <h3 className="font-heading text-2xl font-bold text-teal-600 mb-4">
+                <h3 className="font-heading text-2xl font-bold bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent mb-4">
                   Boutique Homecare
                 </h3>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
