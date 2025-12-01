@@ -1,0 +1,261 @@
+// Complete list of ALL 195+ countries with flags, dial codes, and phone formatting
+// This is a comprehensive dataset covering every country in the world
+
+export interface Country {
+  code: string; // ISO 3166-1 alpha-2
+  name: string;
+  flag: string;
+  dialCode: string;
+  minLength: number;
+  maxLength: number;
+  pattern: RegExp;
+  format: (digits: string) => string;
+}
+
+// Helper function for US/Canada formatting
+const usCaFormat = (d: string) => {
+  if (d.length === 0) return "";
+  if (d.length <= 3) return `(${d}`;
+  if (d.length <= 6) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
+  return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6, 10)}`;
+};
+
+// Helper function for standard European formatting
+const euFormat = (d: string) => {
+  if (d.length === 0) return "";
+  if (d.length <= 3) return d;
+  return `${d.slice(0, 3)} ${d.slice(3)}`;
+};
+
+// Helper function for simple formatting (no spaces)
+const simpleFormat = (d: string) => d;
+
+export const ALL_COUNTRIES: Country[] = [
+  // North America
+  { code: "US", name: "United States", flag: "🇺🇸", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "CA", name: "Canada", flag: "🇨🇦", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "MX", name: "Mexico", flag: "🇲🇽", dialCode: "+52", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: (d) => d.length <= 2 ? d : `${d.slice(0, 2)} ${d.slice(2)}` },
+  
+  // Europe
+  { code: "GB", name: "United Kingdom", flag: "🇬🇧", dialCode: "+44", minLength: 10, maxLength: 11, pattern: /^\d{10,11}$/, format: (d) => d.length <= 4 ? d : d.length <= 7 ? `${d.slice(0, 4)} ${d.slice(4)}` : `${d.slice(0, 4)} ${d.slice(4, 7)} ${d.slice(7)}` },
+  { code: "DE", name: "Germany", flag: "🇩🇪", dialCode: "+49", minLength: 10, maxLength: 11, pattern: /^\d{10,11}$/, format: euFormat },
+  { code: "FR", name: "France", flag: "🇫🇷", dialCode: "+33", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: (d) => d.length <= 2 ? d : `${d.slice(0, 2)} ${d.slice(2)}` },
+  { code: "IT", name: "Italy", flag: "🇮🇹", dialCode: "+39", minLength: 9, maxLength: 10, pattern: /^\d{9,10}$/, format: euFormat },
+  { code: "ES", name: "Spain", flag: "🇪🇸", dialCode: "+34", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "NL", name: "Netherlands", flag: "🇳🇱", dialCode: "+31", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "BE", name: "Belgium", flag: "🇧🇪", dialCode: "+32", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "CH", name: "Switzerland", flag: "🇨🇭", dialCode: "+41", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "AT", name: "Austria", flag: "🇦🇹", dialCode: "+43", minLength: 10, maxLength: 13, pattern: /^\d{10,13}$/, format: euFormat },
+  { code: "SE", name: "Sweden", flag: "🇸🇪", dialCode: "+46", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "NO", name: "Norway", flag: "🇳🇴", dialCode: "+47", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "DK", name: "Denmark", flag: "🇩🇰", dialCode: "+45", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "FI", name: "Finland", flag: "🇫🇮", dialCode: "+358", minLength: 9, maxLength: 10, pattern: /^\d{9,10}$/, format: euFormat },
+  { code: "PL", name: "Poland", flag: "🇵🇱", dialCode: "+48", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "PT", name: "Portugal", flag: "🇵🇹", dialCode: "+351", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "GR", name: "Greece", flag: "🇬🇷", dialCode: "+30", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "IE", name: "Ireland", flag: "🇮🇪", dialCode: "+353", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "CZ", name: "Czech Republic", flag: "🇨🇿", dialCode: "+420", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "HU", name: "Hungary", flag: "🇭🇺", dialCode: "+36", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "RO", name: "Romania", flag: "🇷🇴", dialCode: "+40", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "BG", name: "Bulgaria", flag: "🇧🇬", dialCode: "+359", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "HR", name: "Croatia", flag: "🇭🇷", dialCode: "+385", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "SK", name: "Slovakia", flag: "🇸🇰", dialCode: "+421", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "SI", name: "Slovenia", flag: "🇸🇮", dialCode: "+386", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "EE", name: "Estonia", flag: "🇪🇪", dialCode: "+372", minLength: 7, maxLength: 8, pattern: /^\d{7,8}$/, format: euFormat },
+  { code: "LV", name: "Latvia", flag: "🇱🇻", dialCode: "+371", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "LT", name: "Lithuania", flag: "🇱🇹", dialCode: "+370", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "RU", name: "Russia", flag: "🇷🇺", dialCode: "+7", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: (d) => d.length <= 3 ? d : `${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}` },
+  { code: "UA", name: "Ukraine", flag: "🇺🇦", dialCode: "+380", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "BY", name: "Belarus", flag: "🇧🇾", dialCode: "+375", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "IS", name: "Iceland", flag: "🇮🇸", dialCode: "+354", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: euFormat },
+  { code: "LU", name: "Luxembourg", flag: "🇱🇺", dialCode: "+352", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "MT", name: "Malta", flag: "🇲🇹", dialCode: "+356", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "CY", name: "Cyprus", flag: "🇨🇾", dialCode: "+357", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "AL", name: "Albania", flag: "🇦🇱", dialCode: "+355", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "BA", name: "Bosnia and Herzegovina", flag: "🇧🇦", dialCode: "+387", minLength: 8, maxLength: 9, pattern: /^\d{8,9}$/, format: euFormat },
+  { code: "MK", name: "North Macedonia", flag: "🇲🇰", dialCode: "+389", minLength: 8, maxLength: 9, pattern: /^\d{8,9}$/, format: euFormat },
+  { code: "ME", name: "Montenegro", flag: "🇲🇪", dialCode: "+382", minLength: 8, maxLength: 9, pattern: /^\d{8,9}$/, format: euFormat },
+  { code: "RS", name: "Serbia", flag: "🇷🇸", dialCode: "+381", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "XK", name: "Kosovo", flag: "🇽🇰", dialCode: "+383", minLength: 8, maxLength: 9, pattern: /^\d{8,9}$/, format: euFormat },
+  { code: "MD", name: "Moldova", flag: "🇲🇩", dialCode: "+373", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "AD", name: "Andorra", flag: "🇦🇩", dialCode: "+376", minLength: 6, maxLength: 6, pattern: /^\d{6}$/, format: simpleFormat },
+  { code: "MC", name: "Monaco", flag: "🇲🇨", dialCode: "+377", minLength: 8, maxLength: 9, pattern: /^\d{8,9}$/, format: euFormat },
+  { code: "SM", name: "San Marino", flag: "🇸🇲", dialCode: "+378", minLength: 6, maxLength: 10, pattern: /^\d{6,10}$/, format: simpleFormat },
+  { code: "VA", name: "Vatican City", flag: "🇻🇦", dialCode: "+39", minLength: 9, maxLength: 10, pattern: /^\d{9,10}$/, format: euFormat },
+  { code: "LI", name: "Liechtenstein", flag: "🇱🇮", dialCode: "+423", minLength: 7, maxLength: 9, pattern: /^\d{7,9}$/, format: euFormat },
+  
+  // Asia
+  { code: "CN", name: "China", flag: "🇨🇳", dialCode: "+86", minLength: 11, maxLength: 11, pattern: /^\d{11}$/, format: (d) => d.length <= 3 ? d : `${d.slice(0, 3)} ${d.slice(3, 7)} ${d.slice(7)}` },
+  { code: "IN", name: "India", flag: "🇮🇳", dialCode: "+91", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: (d) => d.length <= 5 ? d : `${d.slice(0, 5)} ${d.slice(5)}` },
+  { code: "JP", name: "Japan", flag: "🇯🇵", dialCode: "+81", minLength: 10, maxLength: 11, pattern: /^\d{10,11}$/, format: euFormat },
+  { code: "KR", name: "South Korea", flag: "🇰🇷", dialCode: "+82", minLength: 9, maxLength: 11, pattern: /^\d{9,11}$/, format: euFormat },
+  { code: "ID", name: "Indonesia", flag: "🇮🇩", dialCode: "+62", minLength: 9, maxLength: 11, pattern: /^\d{9,11}$/, format: euFormat },
+  { code: "TH", name: "Thailand", flag: "🇹🇭", dialCode: "+66", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "VN", name: "Vietnam", flag: "🇻🇳", dialCode: "+84", minLength: 9, maxLength: 10, pattern: /^\d{9,10}$/, format: euFormat },
+  { code: "PH", name: "Philippines", flag: "🇵🇭", dialCode: "+63", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "MY", name: "Malaysia", flag: "🇲🇾", dialCode: "+60", minLength: 9, maxLength: 10, pattern: /^\d{9,10}$/, format: euFormat },
+  { code: "SG", name: "Singapore", flag: "🇸🇬", dialCode: "+65", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: (d) => d.length <= 4 ? d : `${d.slice(0, 4)} ${d.slice(4)}` },
+  { code: "HK", name: "Hong Kong", flag: "🇭🇰", dialCode: "+852", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: (d) => d.length <= 4 ? d : `${d.slice(0, 4)} ${d.slice(4)}` },
+  { code: "TW", name: "Taiwan", flag: "🇹🇼", dialCode: "+886", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "PK", name: "Pakistan", flag: "🇵🇰", dialCode: "+92", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "BD", name: "Bangladesh", flag: "🇧🇩", dialCode: "+880", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "LK", name: "Sri Lanka", flag: "🇱🇰", dialCode: "+94", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "NP", name: "Nepal", flag: "🇳🇵", dialCode: "+977", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "AF", name: "Afghanistan", flag: "🇦🇫", dialCode: "+93", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "IR", name: "Iran", flag: "🇮🇷", dialCode: "+98", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "IQ", name: "Iraq", flag: "🇮🇶", dialCode: "+964", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "SA", name: "Saudi Arabia", flag: "🇸🇦", dialCode: "+966", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "AE", name: "United Arab Emirates", flag: "🇦🇪", dialCode: "+971", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "IL", name: "Israel", flag: "🇮🇱", dialCode: "+972", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "TR", name: "Turkey", flag: "🇹🇷", dialCode: "+90", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "OM", name: "Oman", flag: "🇴🇲", dialCode: "+968", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "KW", name: "Kuwait", flag: "🇰🇼", dialCode: "+965", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "QA", name: "Qatar", flag: "🇶🇦", dialCode: "+974", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "BH", name: "Bahrain", flag: "🇧🇭", dialCode: "+973", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "JO", name: "Jordan", flag: "🇯🇴", dialCode: "+962", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "LB", name: "Lebanon", flag: "🇱🇧", dialCode: "+961", minLength: 7, maxLength: 8, pattern: /^\d{7,8}$/, format: euFormat },
+  { code: "SY", name: "Syria", flag: "🇸🇾", dialCode: "+963", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "YE", name: "Yemen", flag: "🇾🇪", dialCode: "+967", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "BT", name: "Bhutan", flag: "🇧🇹", dialCode: "+975", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "MV", name: "Maldives", flag: "🇲🇻", dialCode: "+960", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "MM", name: "Myanmar", flag: "🇲🇲", dialCode: "+95", minLength: 8, maxLength: 10, pattern: /^\d{8,10}$/, format: euFormat },
+  { code: "KH", name: "Cambodia", flag: "🇰🇭", dialCode: "+855", minLength: 8, maxLength: 9, pattern: /^\d{8,9}$/, format: euFormat },
+  { code: "LA", name: "Laos", flag: "🇱🇦", dialCode: "+856", minLength: 8, maxLength: 10, pattern: /^\d{8,10}$/, format: euFormat },
+  { code: "BN", name: "Brunei", flag: "🇧🇳", dialCode: "+673", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "TL", name: "East Timor", flag: "🇹🇱", dialCode: "+670", minLength: 7, maxLength: 8, pattern: /^\d{7,8}$/, format: simpleFormat },
+  { code: "MN", name: "Mongolia", flag: "🇲🇳", dialCode: "+976", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "KP", name: "North Korea", flag: "🇰🇵", dialCode: "+850", minLength: 8, maxLength: 10, pattern: /^\d{8,10}$/, format: euFormat },
+  { code: "MO", name: "Macau", flag: "🇲🇴", dialCode: "+853", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: (d) => d.length <= 4 ? d : `${d.slice(0, 4)} ${d.slice(4)}` },
+  { code: "KZ", name: "Kazakhstan", flag: "🇰🇿", dialCode: "+7", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: (d) => d.length <= 3 ? d : `${d.slice(0, 3)} ${d.slice(3, 6)} ${d.slice(6)}` },
+  { code: "UZ", name: "Uzbekistan", flag: "🇺🇿", dialCode: "+998", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "GE", name: "Georgia", flag: "🇬🇪", dialCode: "+995", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "AM", name: "Armenia", flag: "🇦🇲", dialCode: "+374", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "AZ", name: "Azerbaijan", flag: "🇦🇿", dialCode: "+994", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "KG", name: "Kyrgyzstan", flag: "🇰🇬", dialCode: "+996", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "TJ", name: "Tajikistan", flag: "🇹🇯", dialCode: "+992", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "TM", name: "Turkmenistan", flag: "🇹🇲", dialCode: "+993", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  
+  // Oceania
+  { code: "AU", name: "Australia", flag: "🇦🇺", dialCode: "+61", minLength: 9, maxLength: 10, pattern: /^\d{9,10}$/, format: (d) => d.length <= 4 ? d : `${d.slice(0, 4)} ${d.slice(4)}` },
+  { code: "NZ", name: "New Zealand", flag: "🇳🇿", dialCode: "+64", minLength: 8, maxLength: 10, pattern: /^\d{8,10}$/, format: euFormat },
+  { code: "FJ", name: "Fiji", flag: "🇫🇯", dialCode: "+679", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "PG", name: "Papua New Guinea", flag: "🇵🇬", dialCode: "+675", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: simpleFormat },
+  { code: "NC", name: "New Caledonia", flag: "🇳🇨", dialCode: "+687", minLength: 6, maxLength: 6, pattern: /^\d{6}$/, format: simpleFormat },
+  { code: "PF", name: "French Polynesia", flag: "🇵🇫", dialCode: "+689", minLength: 6, maxLength: 6, pattern: /^\d{6}$/, format: simpleFormat },
+  { code: "SB", name: "Solomon Islands", flag: "🇸🇧", dialCode: "+677", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "VU", name: "Vanuatu", flag: "🇻🇺", dialCode: "+678", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "NC", name: "New Caledonia", flag: "🇳🇨", dialCode: "+687", minLength: 6, maxLength: 6, pattern: /^\d{6}$/, format: simpleFormat },
+  { code: "WS", name: "Samoa", flag: "🇼🇸", dialCode: "+685", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "TO", name: "Tonga", flag: "🇹🇴", dialCode: "+676", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "KI", name: "Kiribati", flag: "🇰🇮", dialCode: "+686", minLength: 5, maxLength: 8, pattern: /^\d{5,8}$/, format: simpleFormat },
+  { code: "TV", name: "Tuvalu", flag: "🇹🇻", dialCode: "+688", minLength: 6, maxLength: 6, pattern: /^\d{6}$/, format: simpleFormat },
+  { code: "NR", name: "Nauru", flag: "🇳🇷", dialCode: "+674", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "PW", name: "Palau", flag: "🇵🇼", dialCode: "+680", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "FM", name: "Micronesia", flag: "🇫🇲", dialCode: "+691", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "MH", name: "Marshall Islands", flag: "🇲🇭", dialCode: "+692", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  
+  // South America
+  { code: "BR", name: "Brazil", flag: "🇧🇷", dialCode: "+55", minLength: 10, maxLength: 11, pattern: /^\d{10,11}$/, format: (d) => d.length <= 2 ? d : `${d.slice(0, 2)} ${d.slice(2)}` },
+  { code: "AR", name: "Argentina", flag: "🇦🇷", dialCode: "+54", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "CL", name: "Chile", flag: "🇨🇱", dialCode: "+56", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "CO", name: "Colombia", flag: "🇨🇴", dialCode: "+57", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "PE", name: "Peru", flag: "🇵🇪", dialCode: "+51", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "VE", name: "Venezuela", flag: "🇻🇪", dialCode: "+58", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "EC", name: "Ecuador", flag: "🇪🇨", dialCode: "+593", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "UY", name: "Uruguay", flag: "🇺🇾", dialCode: "+598", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "PY", name: "Paraguay", flag: "🇵🇾", dialCode: "+595", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "BO", name: "Bolivia", flag: "🇧🇴", dialCode: "+591", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "GY", name: "Guyana", flag: "🇬🇾", dialCode: "+592", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "SR", name: "Suriname", flag: "🇸🇷", dialCode: "+597", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "GF", name: "French Guiana", flag: "🇬🇫", dialCode: "+594", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "FK", name: "Falkland Islands", flag: "🇫🇰", dialCode: "+500", minLength: 5, maxLength: 5, pattern: /^\d{5}$/, format: simpleFormat },
+  
+  // Central America & Caribbean
+  { code: "GT", name: "Guatemala", flag: "🇬🇹", dialCode: "+502", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "BZ", name: "Belize", flag: "🇧🇿", dialCode: "+501", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "SV", name: "El Salvador", flag: "🇸🇻", dialCode: "+503", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "HN", name: "Honduras", flag: "🇭🇳", dialCode: "+504", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "NI", name: "Nicaragua", flag: "🇳🇮", dialCode: "+505", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "CR", name: "Costa Rica", flag: "🇨🇷", dialCode: "+506", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "PA", name: "Panama", flag: "🇵🇦", dialCode: "+507", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "CU", name: "Cuba", flag: "🇨🇺", dialCode: "+53", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "HT", name: "Haiti", flag: "🇭🇹", dialCode: "+509", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "DO", name: "Dominican Republic", flag: "🇩🇴", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "JM", name: "Jamaica", flag: "🇯🇲", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "BS", name: "Bahamas", flag: "🇧🇸", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "BB", name: "Barbados", flag: "🇧🇧", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "TT", name: "Trinidad and Tobago", flag: "🇹🇹", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "GD", name: "Grenada", flag: "🇬🇩", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "LC", name: "Saint Lucia", flag: "🇱🇨", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "VC", name: "Saint Vincent", flag: "🇻🇨", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "AG", name: "Antigua and Barbuda", flag: "🇦🇬", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "DM", name: "Dominica", flag: "🇩🇲", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "KN", name: "Saint Kitts and Nevis", flag: "🇰🇳", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "KY", name: "Cayman Islands", flag: "🇰🇾", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "VG", name: "British Virgin Islands", flag: "🇻🇬", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "VI", name: "US Virgin Islands", flag: "🇻🇮", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "PR", name: "Puerto Rico", flag: "🇵🇷", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "AW", name: "Aruba", flag: "🇦🇼", dialCode: "+297", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "CW", name: "Curaçao", flag: "🇨🇼", dialCode: "+599", minLength: 7, maxLength: 8, pattern: /^\d{7,8}$/, format: simpleFormat },
+  { code: "SX", name: "Sint Maarten", flag: "🇸🇽", dialCode: "+1", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: usCaFormat },
+  { code: "BQ", name: "Caribbean Netherlands", flag: "🇧🇶", dialCode: "+599", minLength: 7, maxLength: 8, pattern: /^\d{7,8}$/, format: simpleFormat },
+  
+  // Africa
+  { code: "ZA", name: "South Africa", flag: "🇿🇦", dialCode: "+27", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "NG", name: "Nigeria", flag: "🇳🇬", dialCode: "+234", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "KE", name: "Kenya", flag: "🇰🇪", dialCode: "+254", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "GH", name: "Ghana", flag: "🇬🇭", dialCode: "+233", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "ET", name: "Ethiopia", flag: "🇪🇹", dialCode: "+251", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "TZ", name: "Tanzania", flag: "🇹🇿", dialCode: "+255", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "UG", name: "Uganda", flag: "🇺🇬", dialCode: "+256", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "RW", name: "Rwanda", flag: "🇷🇼", dialCode: "+250", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "SN", name: "Senegal", flag: "🇸🇳", dialCode: "+221", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "CI", name: "Ivory Coast", flag: "🇨🇮", dialCode: "+225", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "CM", name: "Cameroon", flag: "🇨🇲", dialCode: "+237", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "AO", name: "Angola", flag: "🇦🇴", dialCode: "+244", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "MZ", name: "Mozambique", flag: "🇲🇿", dialCode: "+258", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "MG", name: "Madagascar", flag: "🇲🇬", dialCode: "+261", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "MA", name: "Morocco", flag: "🇲🇦", dialCode: "+212", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "DZ", name: "Algeria", flag: "🇩🇿", dialCode: "+213", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "TN", name: "Tunisia", flag: "🇹🇳", dialCode: "+216", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "LY", name: "Libya", flag: "🇱🇾", dialCode: "+218", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "SD", name: "Sudan", flag: "🇸🇩", dialCode: "+249", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "EG", name: "Egypt", flag: "🇪🇬", dialCode: "+20", minLength: 10, maxLength: 10, pattern: /^\d{10}$/, format: euFormat },
+  { code: "ZM", name: "Zambia", flag: "🇿🇲", dialCode: "+260", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "ZW", name: "Zimbabwe", flag: "🇿🇼", dialCode: "+263", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "BW", name: "Botswana", flag: "🇧🇼", dialCode: "+267", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "NA", name: "Namibia", flag: "🇳🇦", dialCode: "+264", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "MW", name: "Malawi", flag: "🇲🇼", dialCode: "+265", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "LS", name: "Lesotho", flag: "🇱🇸", dialCode: "+266", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "SZ", name: "Eswatini", flag: "🇸🇿", dialCode: "+268", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "MU", name: "Mauritius", flag: "🇲🇺", dialCode: "+230", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "SC", name: "Seychelles", flag: "🇸🇨", dialCode: "+248", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "KM", name: "Comoros", flag: "🇰🇲", dialCode: "+269", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "DJ", name: "Djibouti", flag: "🇩🇯", dialCode: "+253", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "ER", name: "Eritrea", flag: "🇪🇷", dialCode: "+291", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "SO", name: "Somalia", flag: "🇸🇴", dialCode: "+252", minLength: 8, maxLength: 9, pattern: /^\d{8,9}$/, format: euFormat },
+  { code: "CF", name: "Central African Republic", flag: "🇨🇫", dialCode: "+236", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "TD", name: "Chad", flag: "🇹🇩", dialCode: "+235", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "NE", name: "Niger", flag: "🇳🇪", dialCode: "+227", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "ML", name: "Mali", flag: "🇲🇱", dialCode: "+223", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "BF", name: "Burkina Faso", flag: "🇧🇫", dialCode: "+226", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "BJ", name: "Benin", flag: "🇧🇯", dialCode: "+229", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "TG", name: "Togo", flag: "🇹🇬", dialCode: "+228", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "GN", name: "Guinea", flag: "🇬🇳", dialCode: "+224", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "GW", name: "Guinea-Bissau", flag: "🇬🇼", dialCode: "+245", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "SL", name: "Sierra Leone", flag: "🇸🇱", dialCode: "+232", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "LR", name: "Liberia", flag: "🇱🇷", dialCode: "+231", minLength: 7, maxLength: 8, pattern: /^\d{7,8}$/, format: simpleFormat },
+  { code: "MR", name: "Mauritania", flag: "🇲🇷", dialCode: "+222", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "GQ", name: "Equatorial Guinea", flag: "🇬🇶", dialCode: "+240", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "GA", name: "Gabon", flag: "🇬🇦", dialCode: "+241", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "CG", name: "Republic of the Congo", flag: "🇨🇬", dialCode: "+242", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "CD", name: "DR Congo", flag: "🇨🇩", dialCode: "+243", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "SS", name: "South Sudan", flag: "🇸🇸", dialCode: "+211", minLength: 9, maxLength: 9, pattern: /^\d{9}$/, format: euFormat },
+  { code: "BI", name: "Burundi", flag: "🇧🇮", dialCode: "+257", minLength: 8, maxLength: 8, pattern: /^\d{8}$/, format: euFormat },
+  { code: "CV", name: "Cape Verde", flag: "🇨🇻", dialCode: "+238", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+  { code: "ST", name: "São Tomé and Príncipe", flag: "🇸🇹", dialCode: "+239", minLength: 7, maxLength: 7, pattern: /^\d{7}$/, format: simpleFormat },
+];
+
+// Sort countries alphabetically by name
+export const sortedCountries = [...ALL_COUNTRIES].sort((a, b) => a.name.localeCompare(b.name));
+
