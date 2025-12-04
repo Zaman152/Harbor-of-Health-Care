@@ -49,11 +49,11 @@ const ServicesGrid: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-teal-50/30 to-white relative overflow-hidden">
+    <section className="py-20 bg-[#04aaa5] relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 w-64 h-64 bg-teal-200/20 rounded-full blur-3xl"
+          className="absolute top-20 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -65,7 +65,7 @@ const ServicesGrid: React.FC = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-80 h-80 bg-cyan-200/20 rounded-full blur-3xl"
+          className="absolute bottom-20 right-10 w-80 h-80 bg-white/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -124,7 +124,7 @@ const ServicesGrid: React.FC = () => {
         >
           <motion.a
             href="/services"
-            className="inline-flex items-center text-pink-600 font-semibold text-lg hover:text-pink-700 transition-colors group border-b-2 border-transparent hover:border-pink-600"
+            className="inline-flex items-center text-white font-semibold text-lg transition-colors group border-b-2 border-white hover:border-white"
             whileHover={{ x: 5 }}
           >
             Explore our additional services
@@ -132,7 +132,7 @@ const ServicesGrid: React.FC = () => {
               whileHover={{ x: 5 }}
               transition={{ duration: 0.2 }}
             >
-              <ArrowRight className="w-5 h-5 ml-2" />
+              <ArrowRight className="w-5 h-5 ml-2 text-white" />
             </motion.div>
           </motion.a>
         </motion.div>

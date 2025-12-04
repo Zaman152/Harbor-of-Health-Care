@@ -22,6 +22,7 @@ const ServiceAreasSection: React.FC = () => {
     <section className="py-20 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-teal-50/30 to-transparent opacity-50" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="rounded-3xl bg-white/90 backdrop-blur-sm shadow-md border border-[#04aaa5]/20 p-8 md:p-12">
         <SectionTitle
           title="Serving Edmonton and Beyond!"
           subtitle="From the vibrant heart of the city to the charming suburbs, Harbor of Health Home Care Services proudly offers its services to Home Care clients in Edmonton and the surrounding areas."
@@ -48,7 +49,7 @@ const ServiceAreasSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gradient-to-br from-teal-50 to-cream rounded-2xl p-8 md:p-12 mb-8"
+            className="bg-gradient-to-br from-teal-50 to-cream rounded-2xl p-8 md:p-12 mb-8 border border-[#04aaa5]/20 shadow-sm"
           >
             <div className="flex items-center justify-center mb-6">
               <MapPin className="w-12 h-12 text-teal-500" />
@@ -64,9 +65,9 @@ const ServiceAreasSection: React.FC = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white rounded-full px-4 py-2 text-center shadow-sm hover:shadow-md transition-all border border-[#04aaa5]/20 hover:bg-[#04aaa5]/10"
                 >
-                  <span className="text-gray-700 font-medium">{area}</span>
+                  <span className="text-gray-700 font-medium transition-colors group-hover:text-[#04aaa5]">{area}</span>
                 </motion.div>
               ))}
             </div>
@@ -82,6 +83,7 @@ const ServiceAreasSection: React.FC = () => {
               </Button>
             </div>
           </motion.div>
+        </div>
         </div>
       </div>
     </section>

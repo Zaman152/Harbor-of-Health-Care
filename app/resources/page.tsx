@@ -51,12 +51,18 @@ const ResourcesPage: React.FC = () => {
 
   return (
     <>
-      <div className="pt-24 pb-16 bg-gradient-to-br from-teal-50 via-white to-cream">
+      <div className="pt-24 pb-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            title="Our Senior Care Links & Resources"
-            subtitle="Resources for Seniors Care Links & Family CareGivers"
-          />
+          <div className="rounded-3xl bg-[#04aaa5] text-white px-6 py-10 md:py-14 shadow-sm">
+            <div className="text-center max-w-4xl mx-auto">
+              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-2">
+                Our Senior Care Links & Resources
+              </h1>
+              <p className="text-base md:text-lg opacity-95">
+                Resources for Seniors Care Links & Family CareGivers
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -78,7 +84,8 @@ const ResourcesPage: React.FC = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="rounded-2xl border-2 border-[#04aaa5]/30 p-4 md:p-6 bg-white">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {resources.map((resource, index) => (
                 <motion.div
                   key={resource}
@@ -89,17 +96,18 @@ const ResourcesPage: React.FC = () => {
                 >
                   <a
                     href="#"
-                    className="block bg-pink-50 hover:bg-pink-100 rounded-lg p-4 transition-colors group border-2 border-transparent hover:border-pink-300"
+                    className="block bg-white hover:bg-[#04aaa5]/10 rounded-lg p-4 transition-colors group border-2 border-[#04aaa5]/30 hover:border-[#04aaa5]"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-700 group-hover:text-pink-600 transition-colors">
+                      <span className="text-gray-700 group-hover:text-[#04aaa5] transition-colors">
                         {resource}
                       </span>
-                      <ExternalLink className="w-4 h-4 text-pink-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <ExternalLink className="w-4 h-4 text-[#04aaa5] opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                   </a>
                 </motion.div>
               ))}
+              </div>
             </div>
 
             <motion.div
@@ -107,16 +115,16 @@ const ResourcesPage: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="mt-12 bg-pink-50 rounded-xl p-8 text-center border-2 border-pink-200"
+              className="mt-12 bg-[#04aaa5]/10 rounded-xl p-8 text-center border-2 border-[#04aaa5]/30"
             >
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
                 Need help finding the right resource for you or your loved one?
               </p>
               <p className="text-gray-700 mb-6">
-                Contact us at <a href="tel:+17809060994" className="text-pink-600 font-semibold hover:text-pink-700">(780) 906-0994</a> or{" "}
-                <a href="mailto:hello@harborofhealthhomecare.com" className="text-pink-600 font-semibold hover:text-pink-700">hello@harborofhealthhomecare.com</a>
+                Contact us at <a href="tel:+17809060994" className="text-[#04aaa5] font-semibold hover:text-[#028e89]">(780) 906-0994</a> or{" "}
+                <a href="mailto:hello@harborofhealthhomecare.com" className="text-[#04aaa5] font-semibold hover:text-[#028e89]">hello@harborofhealthhomecare.com</a>
               </p>
-              <p className="text-pink-600 font-semibold italic">
+              <p className="text-[#04aaa5] font-semibold italic">
                 We are Here to Serve!
               </p>
             </motion.div>

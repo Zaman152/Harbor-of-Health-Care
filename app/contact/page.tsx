@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Mail, MapPin, Clock, Send, Check, X, ChevronDown, Search } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, Check, X, ChevronDown, Search, CalendarDays } from "lucide-react";
 import SectionTitle from "@/components/shared/SectionTitle";
 import Button from "@/components/ui/Button";
 import { sortedCountries, type Country } from "@/lib/countries";
@@ -23,9 +23,8 @@ const contactSchema = z.object({
   countryCode: z.string().min(1, "Please select a country"),
   phone: z.string().min(1, "Phone number is required"),
   postalCode: z.string().optional(),
-  acknowledgeContactLens: z.boolean().refine((val) => val === true, {
-    message: "You must acknowledge this field",
-  }),
+  appointmentDate: z.string().min(1, "Please choose a date"),
+  appointmentTime: z.string().min(1, "Please choose a time"),
   message: z.string().min(10, "Message must be at least 10 characters"),
 });
 
@@ -135,7 +134,7 @@ const EnhancedInput = React.forwardRef<HTMLInputElement, EnhancedInputProps>(
                   ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                   : error
                   ? "border-red-500 focus:ring-red-500"
-                  : "border-gray-300 focus:ring-pink-500 focus:border-pink-300"
+                  : "border-gray-300 focus:ring-[#04aaa5] focus:border-[#04aaa5]"
               }
               ${className || ""}
             `}
@@ -314,7 +313,7 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({ value, onChange, erro
                     placeholder="Search country..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-300"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#04aaa5] focus:border-[#04aaa5]"
                   />
                 </div>
               </div>
@@ -334,9 +333,9 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({ value, onChange, erro
                         setSearchQuery("");
                       }}
                       className={`
-                        w-full px-4 py-3 text-left hover:bg-pink-50 transition-colors
+                        w-full px-4 py-3 text-left hover:bg-[#04aaa5]/10 transition-colors
                         flex items-center space-x-3 border-b border-gray-100 last:border-b-0
-                        ${value === country.code ? "bg-pink-50" : ""}
+                        ${value === country.code ? "bg-[#04aaa5]/10" : ""}
                       `}
                     >
                       <span className="text-xl flex-shrink-0">{country.flag}</span>
@@ -362,6 +361,7 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({ value, onChange, erro
 const ContactPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
   
   // Real-time validation states
   const [emailValidation, setEmailValidation] = useState<{
@@ -389,8 +389,9 @@ const ContactPage: React.FC = () => {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      acknowledgeContactLens: false,
       countryCode: "CA", // Default to Canada
+      appointmentDate: "",
+      appointmentTime: "",
     },
   });
 
@@ -470,8 +471,9 @@ const ContactPage: React.FC = () => {
     setIsSubmitting(false);
     setSubmitSuccess(true);
     reset({
-      acknowledgeContactLens: false,
       countryCode: "CA",
+      appointmentDate: "",
+      appointmentTime: "",
     });
     // Reset validation states
     setEmailValidation({ state: "idle", message: "" });
@@ -481,20 +483,21 @@ const ContactPage: React.FC = () => {
   };
 
   // Check if form is valid for button enable/disable
-  const isFormValid = 
+  const isStep1Valid =
     emailValidation.state === "valid" &&
     phoneValidation.state === "valid" &&
     (postalCodeValue ? postalCodeValidation.state === "valid" : true) &&
-    watch("firstName") &&
-    watch("lastName") &&
-    watch("dateOfBirth") &&
-    watch("acknowledgeContactLens") &&
-    watch("message") &&
+    Boolean(watch("firstName")) &&
+    Boolean(watch("lastName")) &&
+    Boolean(watch("dateOfBirth")) &&
+    Boolean(watch("message")) &&
     watch("message").length >= 10;
+
+  const isStep2Valid = Boolean(watch("appointmentDate")) && Boolean(watch("appointmentTime"));
 
   return (
     <>
-      <div className="pt-24 pb-16 bg-gradient-to-br from-pink-50 via-white to-pink-50">
+      <div className="pt-24 pb-16 bg-gradient-to-br from-teal-50 via-white to-cream">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="Connect with us"
@@ -526,14 +529,14 @@ const ContactPage: React.FC = () => {
 
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 border-2 border-pink-200">
-                    <Phone className="w-6 h-6 text-pink-500" />
+                  <div className="w-12 h-12 rounded-full bg-[#04aaa5]/10 flex items-center justify-center flex-shrink-0 border-2 border-[#04aaa5]/30">
+                    <Phone className="w-6 h-6 text-[#04aaa5]" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
                     <a
                       href="tel:+17809060994"
-                      className="text-pink-500 hover:text-pink-600 transition-colors"
+                      className="text-[#04aaa5] hover:text-[#028e89] transition-colors"
                     >
                       (780) 906-0994
                     </a>
@@ -541,14 +544,14 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 border-2 border-pink-200">
-                    <Mail className="w-6 h-6 text-pink-500" />
+                  <div className="w-12 h-12 rounded-full bg-[#04aaa5]/10 flex items-center justify-center flex-shrink-0 border-2 border-[#04aaa5]/30">
+                    <Mail className="w-6 h-6 text-[#04aaa5]" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
                     <a
                       href="mailto:hello@harborofhealthhomecare.com"
-                      className="text-pink-500 hover:text-pink-600 transition-colors"
+                      className="text-[#04aaa5] hover:text-[#028e89] transition-colors"
                     >
                       hello@harborofhealthhomecare.com
                     </a>
@@ -556,8 +559,8 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 border-2 border-pink-200">
-                    <MapPin className="w-6 h-6 text-pink-500" />
+                  <div className="w-12 h-12 rounded-full bg-[#04aaa5]/10 flex items-center justify-center flex-shrink-0 border-2 border-[#04aaa5]/30">
+                    <MapPin className="w-6 h-6 text-[#04aaa5]" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">
@@ -572,8 +575,8 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center flex-shrink-0 border-2 border-pink-200">
-                    <Clock className="w-6 h-6 text-pink-500" />
+                  <div className="w-12 h-12 rounded-full bg-[#04aaa5]/10 flex items-center justify-center flex-shrink-0 border-2 border-[#04aaa5]/30">
+                    <Clock className="w-6 h-6 text-[#04aaa5]" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-1">
@@ -610,178 +613,109 @@ const ContactPage: React.FC = () => {
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="mb-6 p-4 bg-pink-50 border-2 border-pink-200 rounded-lg text-pink-800"
+                      className="mb-6 p-4 bg-[#04aaa5]/10 border-2 border-[#04aaa5]/30 rounded-lg text-[#046c69]"
                     >
                       Thank you for reaching out! We&apos;ll contact you within 24 hours. We are Here to Serve!
                     </motion.div>
                   )}
                 </AnimatePresence>
+                {/* Stepper */}
+                <div className="grid grid-cols-3 gap-4 mb-8">
+                  {["Patient Information", "Appointment Information", "Appointment Confirmation"].map((label, idx) => {
+                    const step = (idx + 1) as 1 | 2 | 3;
+                    const isActive = currentStep === step;
+                    const isDone = currentStep > step;
+                    return (
+                      <div key={label} className={`flex items-center justify-center rounded-xl border px-3 py-3 text-sm font-semibold transition-colors ${isActive ? "bg-[#04aaa5] text-white border-[#04aaa5]" : isDone ? "bg-[#04aaa5]/10 text-[#04aaa5] border-[#04aaa5]/30" : "bg-gray-50 text-gray-700 border-gray-200"}`}>
+                        <span className="mr-2 rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold border" style={{borderColor: isActive? '#ffffff' : isDone ? '#04aaa5' : '#d1d5db', color: isActive? '#ffffff' : isDone ? '#04aaa5' : '#374151'}}>
+                          {step}
+                        </span>
+                        {label}
+                      </div>
+                    );
+                  })}
+                </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                  {/* Patient Details Section */}
-                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Patient Details</h4>
-                  
-                  {/* First Name and Last Name - Side by side on desktop, stacked on mobile */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <EnhancedInput
-                      label="First Name"
-                      id="firstName"
-                      {...register("firstName")}
-                      error={errors.firstName?.message}
-                      required
-                    />
-                    <EnhancedInput
-                      label="Last Name"
-                      id="lastName"
-                      {...register("lastName")}
-                      error={errors.lastName?.message}
-                      required
-                    />
-                  </div>
-
-                  {/* Date of Birth */}
-                  <EnhancedInput
-                    label="Date of Birth"
-                    type="date"
-                    id="dateOfBirth"
-                    {...register("dateOfBirth")}
-                    error={errors.dateOfBirth?.message}
-                    required
-                  />
-
-                  {/* Patient Liaison */}
-                  <EnhancedInput
-                    label="Patient Liaison"
-                    type="text"
-                    id="patientLiaison"
-                    {...register("patientLiaison")}
-                    error={errors.patientLiaison?.message}
-                    placeholder="Enter patient liaison name"
-                  />
-
-                  {/* Email with real-time validation */}
-                  <EnhancedInput
-                    label="Email"
-                    type="email"
-                    id="email"
-                    {...register("email")}
-                    error={errors.email?.message}
-                    validationState={emailValidation.state}
-                    validationMessage={emailValidation.message}
-                    required
-                  />
-
-                  {/* Phone Section with Country Code Dropdown */}
-                  <div className="space-y-4">
-                    {/* Labels row */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <label className="block text-sm font-medium text-gray-700 md:col-span-1">
-                        Country <span className="text-red-500 ml-1">*</span>
-                      </label>
-                      <label className="block text-sm font-medium text-gray-700 md:col-span-2">
-                        Phone Number <span className="text-red-500 ml-1">*</span>
-                      </label>
-                    </div>
-                    {/* Inputs row */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {/* Country Code Selector */}
-                      <div className="md:col-span-1">
-                        <CountrySelector
-                          value={countryCodeValue}
-                          onChange={(code) => setValue("countryCode", code)}
-                          error={errors.countryCode?.message}
-                          showLabel={false}
-                        />
-                      </div>
-                      {/* Phone Number Input */}
-                      <div className="md:col-span-2">
-                        <EnhancedInput
-                          label=""
-                          type="tel"
-                          id="phone"
-                          placeholder={selectedCountry.format("1234567890".slice(0, selectedCountry.maxLength)).replace(/\d/g, "X")}
-                          {...register("phone")}
-                          error={errors.phone?.message}
-                          validationState={phoneValidation.state}
-                          validationMessage={phoneValidation.message}
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Postal Code (Optional) */}
-                  <EnhancedInput
-                    label="Postal Code (Optional)"
-                    type="text"
-                    id="postalCode"
-                    placeholder="12345"
-                    {...register("postalCode")}
-                    error={errors.postalCode?.message}
-                    validationState={postalCodeValidation.state}
-                    validationMessage={postalCodeValidation.message}
-                    maxLength={5}
-                  />
-
-                  {/* Message Field */}
-                  <EnhancedTextarea
-                    label="Message"
-                    id="message"
-                    rows={6}
-                    placeholder="Tell us about your care needs..."
-                    {...register("message")}
-                    error={errors.message?.message}
-                    required
-                  />
-
-                  {/* Checkbox for Contact Lens Acknowledgment */}
-                  <div className="flex items-start">
-                    <div className="flex items-center h-5">
-                      <input
-                        id="acknowledgeContactLens"
-                        type="checkbox"
-                        {...register("acknowledgeContactLens")}
-                        className={`
-                          w-4 h-4 rounded border-gray-300 focus:ring-pink-500 text-pink-500
-                          ${errors.acknowledgeContactLens ? "border-red-500" : ""}
-                        `}
-                      />
-                    </div>
-                    <div className="ml-3 text-sm">
-                      <label
-                        htmlFor="acknowledgeContactLens"
-                        className="font-medium text-gray-700"
-                      >
-                        I understand that if I wear hard or gas permeable contact lenses, I must remove them 7 days before my consultation.
-                        {errors.acknowledgeContactLens && (
-                          <span className="text-red-500 ml-1">*</span>
-                        )}
-                      </label>
-                      {errors.acknowledgeContactLens && (
-                        <p className="mt-1 text-sm text-red-500" role="alert">
-                          {errors.acknowledgeContactLens.message}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Submit Button - Disabled until all validations pass */}
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    size="lg"
-                    className="w-full rounded-full bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 hover:from-pink-600 hover:via-pink-500 hover:to-pink-400 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md hover:shadow-lg"
-                    disabled={isSubmitting || !isFormValid}
-                  >
-                    {isSubmitting ? (
-                      "Sending..."
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5 mr-2 inline" />
-                        Request Free Consultation
-                      </>
+                  <AnimatePresence mode="wait">
+                    {currentStep === 1 && (
+                      <motion.div key="step1" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} className="space-y-6">
+                        <h4 className="text-lg font-semibold text-gray-900">Patient Details</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <EnhancedInput label="First Name" id="firstName" {...register("firstName")} error={errors.firstName?.message} required />
+                          <EnhancedInput label="Last Name" id="lastName" {...register("lastName")} error={errors.lastName?.message} required />
+                        </div>
+                        <EnhancedInput label="Date of Birth" type="date" id="dateOfBirth" {...register("dateOfBirth")} error={errors.dateOfBirth?.message} required />
+                        <EnhancedInput label="Email" type="email" id="email" {...register("email")} error={errors.email?.message} validationState={emailValidation.state} validationMessage={emailValidation.message} required />
+                        <div className="space-y-4">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <label className="block text-sm font-medium text-gray-700 md:col-span-1">Country <span className="text-red-500 ml-1">*</span></label>
+                            <label className="block text-sm font-medium text-gray-700 md:col-span-2">Phone Number <span className="text-red-500 ml-1">*</span></label>
+                          </div>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div className="md:col-span-1">
+                              <CountrySelector value={countryCodeValue} onChange={(code) => setValue("countryCode", code)} error={errors.countryCode?.message} showLabel={false} />
+                            </div>
+                            <div className="md:col-span-2">
+                              <EnhancedInput label="" type="tel" id="phone" placeholder={selectedCountry.format("1234567890".slice(0, selectedCountry.maxLength)).replace(/\d/g, "X")} {...register("phone")} error={errors.phone?.message} validationState={phoneValidation.state} validationMessage={phoneValidation.message} required />
+                            </div>
+                          </div>
+                        </div>
+                        <EnhancedInput label="Postal Code (Optional)" type="text" id="postalCode" placeholder="12345" {...register("postalCode")} error={errors.postalCode?.message} validationState={postalCodeValidation.state} validationMessage={postalCodeValidation.message} maxLength={5} />
+                        <EnhancedTextarea label="Message" id="message" rows={6} placeholder="Tell us about your care needs..." {...register("message")} error={errors.message?.message} required />
+                        <Button type="button" variant="primary" size="lg" className="w-full rounded-full bg-[#04aaa5] hover:bg-[#028e89] disabled:opacity-50 disabled:cursor-not-allowed" disabled={!isStep1Valid} onClick={() => setCurrentStep(2)}>
+                          Next Step
+                        </Button>
+                      </motion.div>
                     )}
-                  </Button>
+
+                    {currentStep === 2 && (
+                      <motion.div key="step2" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} className="space-y-6">
+                        <h4 className="text-lg font-semibold text-gray-900">Appointment Details</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                          <EnhancedInput label="Preferred Date" type="date" id="appointmentDate" {...register("appointmentDate")} error={errors.appointmentDate?.message} required />
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Time <span className="text-red-500">*</span></label>
+                            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                              {['09:00 AM','10:00 AM','11:00 AM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM'].map((t) => (
+                                <button key={t} type="button" onClick={() => setValue('appointmentTime', t, { shouldValidate: true })} className={`px-3 py-2 rounded-lg text-sm border transition-colors ${watch('appointmentTime')===t ? 'bg-[#04aaa5] text-white border-[#04aaa5]' : 'bg-white text-gray-700 border-gray-200 hover:bg-[#04aaa5]/10 hover:border-[#04aaa5]'}`}>
+                                  {t}
+                                </button>
+                              ))}
+                            </div>
+                            {errors.appointmentTime?.message && <p className="mt-1 text-sm text-red-500">{errors.appointmentTime.message}</p>}
+                          </div>
+                        </div>
+                        <div className="flex gap-3">
+                          <Button type="button" variant="outline" onClick={() => setCurrentStep(1)} className="rounded-full border-[#04aaa5] text-[#04aaa5] hover:bg-[#04aaa5] hover:text-white">Back</Button>
+                          <Button type="button" variant="primary" className="rounded-full bg-[#04aaa5] hover:bg-[#028e89] disabled:opacity-50" disabled={!isStep2Valid} onClick={() => setCurrentStep(3)}>Next Step</Button>
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {currentStep === 3 && (
+                      <motion.div key="step3" initial={{opacity:0, y:10}} animate={{opacity:1, y:0}} exit={{opacity:0, y:-10}} className="space-y-6">
+                        <h4 className="text-lg font-semibold text-gray-900">Review & Confirm</h4>
+                        <div className="rounded-xl border border-gray-200 p-6 bg-gray-50">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 text-sm">
+                            <div><span className="text-gray-500">First Name</span><div className="font-medium text-gray-900">{watch('firstName')}</div></div>
+                            <div><span className="text-gray-500">Last Name</span><div className="font-medium text-gray-900">{watch('lastName')}</div></div>
+                            <div><span className="text-gray-500">DOB</span><div className="font-medium text-gray-900">{watch('dateOfBirth')}</div></div>
+                            <div><span className="text-gray-500">Email</span><div className="font-medium text-gray-900">{watch('email')}</div></div>
+                            <div><span className="text-gray-500">Phone</span><div className="font-medium text-gray-900">{watch('phone')}</div></div>
+                            <div><span className="text-gray-500">Postal Code</span><div className="font-medium text-gray-900">{watch('postalCode') || '—'}</div></div>
+                            <div className="md:col-span-2"><span className="text-gray-500">Message</span><div className="font-medium text-gray-900 whitespace-pre-wrap">{watch('message')}</div></div>
+                            <div><span className="text-gray-500">Date</span><div className="font-medium text-gray-900">{watch('appointmentDate')}</div></div>
+                            <div><span className="text-gray-500">Time</span><div className="font-medium text-gray-900">{watch('appointmentTime')}</div></div>
+                          </div>
+                        </div>
+                        <div className="flex gap-3">
+                          <Button type="button" variant="outline" onClick={() => setCurrentStep(2)} className="rounded-full border-[#04aaa5] text-[#04aaa5] hover:bg-[#04aaa5] hover:text-white">Back</Button>
+                          <Button type="submit" variant="primary" size="lg" className="rounded-full bg-[#04aaa5] hover:bg-[#028e89] disabled:opacity-50" disabled={isSubmitting}>{isSubmitting ? 'Sending...' : (<><Send className="w-5 h-5 mr-2 inline" />Confirm & Send</>)}</Button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </form>
               </div>
             </motion.div>

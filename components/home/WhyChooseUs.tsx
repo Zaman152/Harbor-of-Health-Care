@@ -53,6 +53,7 @@ const WhyChooseUs: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="rounded-3xl bg-white/90 backdrop-blur-sm shadow-md border border-[#04aaa5]/20 p-8 md:p-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,9 +96,9 @@ const WhyChooseUs: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="glass-card p-6 text-center"
+                className="glass-card p-6 text-center group"
               >
-                <p className="text-gray-700 leading-relaxed">{point}</p>
+                <p className="text-gray-700 leading-relaxed transition-colors group-hover:text-[#04aaa5]">{point}</p>
               </motion.div>
             ))}
           </div>
@@ -113,6 +114,7 @@ const WhyChooseUs: React.FC = () => {
               index={index}
             />
           ))}
+        </div>
         </div>
       </div>
     </section>

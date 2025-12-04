@@ -27,7 +27,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       className="h-full"
     >
       <motion.div
-        className="glass-card h-full flex flex-col p-6 group cursor-pointer"
+        className="bg-white rounded-2xl shadow-md h-full flex flex-col p-6 group cursor-pointer hover:shadow-lg transition-shadow"
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
@@ -37,12 +37,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             whileHover={{ scale: 1.1, rotate: 5 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-400/20 via-pink-400/15 to-cyan-400/20 rounded-full blur-xl" />
-            <div className="relative bg-gradient-to-br from-teal-500 via-pink-500 to-cyan-400 p-4 rounded-2xl border-2 border-pink-300/50">
-              <Icon className="w-8 h-8 text-white" />
+            <div className="absolute inset-0 bg-[#04aaa5]/15 rounded-full blur-xl" />
+            <div className="relative bg-white p-4 rounded-2xl border-2 border-[#04aaa5]/30">
+              <Icon className="w-8 h-8 text-[#04aaa5]" />
             </div>
           </motion.div>
-          <h3 className="font-heading text-xl font-bold text-gray-900 mb-4 group-hover:text-pink-600 transition-colors">
+          <h3 className="font-heading text-xl font-bold text-gray-900 mb-4 group-hover:text-[#04aaa5] transition-colors">
             {title}
           </h3>
         </div>
@@ -55,7 +55,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
         </div>
         <motion.a
           href="/services"
-          className="inline-flex items-center text-pink-500 font-semibold hover:text-pink-600 transition-colors mt-auto group/link border-b-2 border-transparent hover:border-pink-500"
+          className="inline-flex items-center text-gray-700 font-semibold hover:text-[#04aaa5] transition-colors mt-auto group/link border-b-2 border-transparent hover:border-[#04aaa5]"
           whileHover={{ x: 5 }}
         >
           Read More

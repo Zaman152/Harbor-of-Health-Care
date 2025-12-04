@@ -27,24 +27,26 @@ const StatCard: React.FC<{
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="bg-white p-6 rounded-2xl shadow-md text-center hover:shadow-lg transition-shadow"
+      className="bg-white p-6 rounded-2xl shadow-md text-center hover:shadow-lg transition-shadow group"
     >
-      <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent mb-2">
-        {stat.isText ? (
-          stat.label
-        ) : (
-          <>
-            <CountUp
-              start={0}
-              end={stat.number}
-              duration={2}
-              decimals={0}
-            />
-            {stat.suffix}
-          </>
-        )}
+      <div className="mb-2">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#04aaa5]/10 text-[#04aaa5] font-bold text-3xl md:text-4xl border border-[#04aaa5]/20 px-5 py-3">
+          {stat.isText ? (
+            stat.label
+          ) : (
+            <>
+              <CountUp
+                start={0}
+                end={stat.number}
+                duration={2}
+                decimals={0}
+              />
+              {stat.suffix}
+            </>
+          )}
+        </span>
       </div>
-      <div className="text-gray-600 font-medium">{stat.label}</div>
+      <div className="text-gray-600 font-medium transition-colors group-hover:text-[#04aaa5]">{stat.label}</div>
     </motion.div>
   );
 };
@@ -81,10 +83,10 @@ const HeroSection: React.FC = () => {
       {/* Light-blue wave shapes background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <svg className="absolute bottom-0 left-0 w-full h-64" viewBox="0 0 1200 200" preserveAspectRatio="none">
-          <path d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z" fill="rgba(255, 122, 197, 0.4)" />
+          <path d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z" fill="rgba(4, 170, 165, 0.35)" />
         </svg>
         <svg className="absolute bottom-0 left-0 w-full h-48" viewBox="0 0 1200 200" preserveAspectRatio="none">
-          <path d="M0,120 Q400,80 800,120 T1200,120 L1200,200 L0,200 Z" fill="rgba(255, 210, 235, 0.3)" />
+          <path d="M0,120 Q400,80 800,120 T1200,120 L1200,200 L0,200 Z" fill="rgba(4, 170, 165, 0.2)" />
         </svg>
         {floatingShapes.map((shape, index) => (
           <motion.div
@@ -95,7 +97,7 @@ const HeroSection: React.FC = () => {
               height: shape.size,
               left: shape.x,
               top: shape.y,
-              background: `linear-gradient(135deg, rgba(255, 122, 197, 0.3), rgba(255, 210, 235, 0.2))`,
+              background: `linear-gradient(135deg, rgba(4, 170, 165, 0.30), rgba(4, 170, 165, 0.15))`,
             }}
             animate={{
               y: [0, -30, 0],
@@ -125,10 +127,9 @@ const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+                className="mb-1 font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-center lg:text-left bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent"
               >
-                We connect seniors with their{" "}
-                <span className="bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent">ideal caregivers</span>
+                We connect seniors with their ideal caregivers
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -150,7 +151,7 @@ const HeroSection: React.FC = () => {
                 <Button
                   variant="primary"
                   size="lg"
-                  className="text-lg px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 hover:from-pink-600 hover:via-pink-500 hover:to-pink-400 text-white shadow-lg"
+                  className="text-lg px-8 py-4 rounded-full text-white shadow-lg"
                   onClick={() => (window.location.href = "/contact")}
                 >
                   Book a Free Consultation
@@ -160,7 +161,7 @@ const HeroSection: React.FC = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="text-lg px-8 py-4 rounded-full border-2 border-pink-500 text-pink-500 hover:bg-gradient-to-br hover:from-pink-50 hover:via-pink-100 hover:to-pink-50 transition-all"
+                  className="text-lg px-8 py-4 rounded-full transition-all"
                   onClick={() => (window.location.href = "tel:+17809060994")}
                 >
                   Call (780) 906-0994
@@ -187,9 +188,9 @@ const HeroSection: React.FC = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Check className="w-5 h-5 text-pink-500 flex-shrink-0" />
+                    <Check className="w-5 h-5 text-[#04aaa5] flex-shrink-0" />
                   </motion.div>
-                  <span className="text-gray-700 group-hover:text-pink-500 transition-colors text-sm">
+                  <span className="text-gray-700 group-hover:text-[#04aaa5] transition-colors text-sm">
                     {feature}
                   </span>
                 </motion.div>
@@ -210,8 +211,8 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="relative rounded-3xl overflow-hidden"
             >
-              {/* Soft blue gradient background shape */}
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-pink-50 to-pink-100 rounded-3xl -z-10 transform scale-105" />
+              {/* Teal gradient background shape */}
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-100 via-teal-50 to-teal-100 rounded-3xl -z-10 transform scale-105" />
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
                 <Image
                   src="/images/first image.jpg"

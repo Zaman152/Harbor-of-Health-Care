@@ -27,12 +27,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variants = {
       primary:
-        "bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 hover:from-pink-600 hover:via-pink-500 hover:to-pink-400 text-white focus:ring-pink-500 shadow-md hover:shadow-lg",
+        "bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 text-white focus:ring-pink-500 shadow-md hover:shadow-lg hover:bg-[#04aaa5] hover:from-transparent hover:via-transparent hover:to-transparent",
       secondary:
-        "bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 hover:from-pink-600 hover:via-pink-500 hover:to-pink-400 text-white focus:ring-pink-500 shadow-md hover:shadow-lg border-2 border-transparent",
+        "bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 text-white focus:ring-pink-500 shadow-md hover:shadow-lg border-2 border-transparent hover:bg-[#04aaa5] hover:from-transparent hover:via-transparent hover:to-transparent",
       outline:
-        "border-2 border-pink-500 text-pink-500 hover:bg-gradient-to-br hover:from-pink-50 hover:via-pink-100 hover:to-pink-50 focus:ring-pink-500 hover:border-pink-600",
-      ghost: "text-pink-500 hover:bg-pink-50 focus:ring-pink-500",
+        "border-2 border-pink-500 text-pink-500 focus:ring-pink-500 hover:border-[#04aaa5] hover:bg-[#04aaa5] hover:text-white",
+      ghost: "text-pink-500 focus:ring-pink-500 hover:bg-[#04aaa5] hover:text-white",
     };
 
     const sizes = {
