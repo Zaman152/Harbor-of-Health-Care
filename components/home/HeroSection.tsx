@@ -127,7 +127,7 @@ const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-center lg:text-left bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent"
+                className="mb-1 font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-center lg:text-left bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent"
               >
                 We connect seniors with their ideal caregivers
               </motion.h1>
