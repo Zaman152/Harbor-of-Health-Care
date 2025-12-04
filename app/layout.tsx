@@ -91,7 +91,7 @@ export default function RootLayout({
         <SmoothScrollProvider>
           <ScrollProgress />
           <Header />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen pt-6 md:pt-8">{children}</main>
           <Footer />
           <ChatWidget />
         </SmoothScrollProvider>

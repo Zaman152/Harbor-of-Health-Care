@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-800 hover:bg-[#04aaa5] transition-colors border-2 border-transparent hover:border-[#04aaa5]"
+                    className="group w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-colors border-2 border-transparent hover:border-[#04aaa5]/40 hover:bg-[#04aaa5]/10 hover:text-[#04aaa5]"
                     aria-label={social.label}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="text-white font-heading font-semibold text-lg mb-4">
+            <h3 className="text-gray-900 font-heading font-bold text-lg mb-4">
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
                 >
                   <Link
                     href={link.href}
-                    className="text-sm hover:text-[#04aaa5] transition-colors inline-block group"
+                    className="text-sm text-gray-700 hover:text-[#04aaa5] transition-colors inline-block group"
                   >
                     <span className="group-hover:translate-x-1 inline-block transition-transform">
                       {link.name}
@@ -138,7 +138,7 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-white font-heading font-semibold text-lg mb-4">
+            <h3 className="text-gray-900 font-heading font-bold text-lg mb-4">
               Services
             </h3>
             <ul className="space-y-2">
@@ -170,7 +170,7 @@ const Footer: React.FC = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h3 className="text-white font-heading font-semibold text-lg mb-4">
+            <h3 className="text-gray-900 font-heading font-bold text-lg mb-4">
               Contact
             </h3>
             <ul className="space-y-3">

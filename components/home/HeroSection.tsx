@@ -83,10 +83,10 @@ const HeroSection: React.FC = () => {
       {/* Light-blue wave shapes background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <svg className="absolute bottom-0 left-0 w-full h-64" viewBox="0 0 1200 200" preserveAspectRatio="none">
-          <path d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z" fill="rgba(255, 122, 197, 0.4)" />
+          <path d="M0,100 Q300,50 600,100 T1200,100 L1200,200 L0,200 Z" fill="rgba(4, 170, 165, 0.35)" />
         </svg>
         <svg className="absolute bottom-0 left-0 w-full h-48" viewBox="0 0 1200 200" preserveAspectRatio="none">
-          <path d="M0,120 Q400,80 800,120 T1200,120 L1200,200 L0,200 Z" fill="rgba(255, 210, 235, 0.3)" />
+          <path d="M0,120 Q400,80 800,120 T1200,120 L1200,200 L0,200 Z" fill="rgba(4, 170, 165, 0.2)" />
         </svg>
         {floatingShapes.map((shape, index) => (
           <motion.div
@@ -211,8 +211,8 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.3 }}
               className="relative rounded-3xl overflow-hidden"
             >
-              {/* Soft blue gradient background shape */}
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-100 via-pink-50 to-pink-100 rounded-3xl -z-10 transform scale-105" />
+              {/* Teal gradient background shape */}
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-100 via-teal-50 to-teal-100 rounded-3xl -z-10 transform scale-105" />
               <div className="relative rounded-3xl overflow-hidden shadow-xl">
                 <Image
                   src="/images/first image.jpg"

@@ -37,8 +37,8 @@ const Header: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-white shadow-sm py-1.5"
-            : "bg-white py-2"
+            ? "bg-white shadow-sm py-2"
+            : "bg-white py-3"
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,29 +70,39 @@ const Header: React.FC = () => {
                     <div
                       key={link.name}
                       className="relative"
+                      onMouseEnter={() => setOpenServices(true)}
                       onMouseLeave={() => setOpenServices(false)}
                     >
-                      <button
-                        type="button"
-                        onClick={() => setOpenServices((o) => !o)}
-                        className={`relative inline-flex items-center gap-2 text-gray-700 font-semibold transition-colors text-sm hover:text-[#04aaa5] ${
-                          isActive || openServices ? "text-[#04aaa5]" : ""
-                        }`}
-                        aria-haspopup="menu"
-                        aria-expanded={openServices}
-                      >
-                        <span>{link.name}</span>
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${openServices ? "rotate-180" : ""}`}
-                        />
-                        <span className="sr-only">Toggle services menu</span>
-                        <motion.span
-                          className="absolute -bottom-1 left-0 h-0.5 bg-[#04aaa5]"
-                          initial={{ width: 0 }}
-                          animate={{ width: isActive || openServices ? "100%" : 0 }}
-                          transition={{ duration: 0.2 }}
-                        />
-                      </button>
+                      <div className="flex items-center gap-2">
+                        <Link
+                          href="/services"
+                          className={`relative inline-flex items-center text-gray-700 font-semibold transition-colors text-sm hover:text-[#04aaa5] ${
+                            isActive ? "text-[#04aaa5]" : ""
+                          }`}
+                        >
+                          <span>Services</span>
+                          <motion.span
+                            className="absolute -bottom-1 left-0 h-0.5 bg-[#04aaa5]"
+                            initial={{ width: 0 }}
+                            animate={{ width: isActive ? "100%" : 0 }}
+                            transition={{ duration: 0.2 }}
+                          />
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => setOpenServices((o) => !o)}
+                          className={`p-1 text-gray-700 hover:text-[#04aaa5] transition-colors ${
+                            openServices ? "text-[#04aaa5]" : ""
+                          }`}
+                          aria-haspopup="menu"
+                          aria-expanded={openServices}
+                          aria-label="Toggle services menu"
+                        >
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform ${openServices ? "rotate-180" : ""}`}
+                          />
+                        </button>
+                      </div>
 
                       <AnimatePresence>
                         {openServices && (
@@ -160,7 +170,7 @@ const Header: React.FC = () => {
                   href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gradient-to-br hover:from-pink-100 hover:via-pink-50 hover:to-pink-100 text-gray-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-pink-500 hover:via-pink-400 hover:to-pink-300 transition-colors"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#04aaa5]/10 text-gray-600 hover:text-[#04aaa5] transition-colors border border-transparent hover:border-[#04aaa5]/30"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-4 h-4" />
@@ -169,7 +179,7 @@ const Header: React.FC = () => {
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gradient-to-br hover:from-pink-100 hover:via-pink-50 hover:to-pink-100 text-gray-600 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-pink-500 hover:via-pink-400 hover:to-pink-300 transition-colors"
+                  className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 hover:bg-[#04aaa5]/10 text-gray-600 hover:text-[#04aaa5] transition-colors border border-transparent hover:border-[#04aaa5]/30"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-4 h-4" />
