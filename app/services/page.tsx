@@ -112,18 +112,21 @@ const ServicesPage: React.FC = () => {
 
   return (
     <>
-      <div className="pt-24 pb-16 bg-gradient-to-br from-teal-50 via-white to-cream">
+      <div className="pt-24 pb-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionTitle
-          title="Our Services"
-          subtitle="Comprehensive in-home care services designed to meet the diverse needs of individuals of all ages and abilities"
-        />
-        
-        <div className="max-w-4xl mx-auto mb-12 text-center">
-          <p className="text-lg text-gray-700 leading-relaxed">
-            It starts with genuine compassion. Truly caring. Each of our caregivers is hand-selected for their proven dedication to exceptional home care experience.
-          </p>
-        </div>
+          <div className="rounded-3xl bg-[#04aaa5] text-white px-6 py-10 md:py-14 shadow-sm">
+            <div className="text-center max-w-4xl mx-auto">
+              <div className="text-sm font-semibold tracking-wider opacity-90 mb-2">
+                EXPLORE OUR SERVICES
+              </div>
+              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                Our Services
+              </h1>
+              <p className="text-base md:text-lg opacity-95">
+                It starts with genuine compassion. Truly caring. Each of our caregivers is hand-selected for their proven dedication to exceptional home care Experience.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -170,9 +173,9 @@ const ServicesPage: React.FC = () => {
                       transition={{ duration: 0.6 }}
                       className={`space-y-6 ${!isEven ? "lg:col-start-1 lg:row-start-1" : ""}`}
                     >
-                      <div className="flex items-center space-x-3">
-                        <div className="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center border-2 border-pink-200">
-                          <Icon className="w-6 h-6 text-pink-500" />
+                      <div className="flex items-center space-x-3 group">
+                        <div className="w-12 h-12 rounded-full bg-[#04aaa5]/10 flex items-center justify-center border-2 border-[#04aaa5]/30">
+                          <Icon className="w-6 h-6 text-[#04aaa5]" />
                         </div>
                         <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900">
                           {service.title}
@@ -184,7 +187,7 @@ const ServicesPage: React.FC = () => {
                       <ul className="space-y-3">
                         {service.features.map((feature, idx) => (
                           <li key={idx} className="flex items-start space-x-3">
-                            <Check className="w-6 h-6 text-pink-500 flex-shrink-0 mt-0.5" />
+                            <Check className="w-6 h-6 text-[#04aaa5] flex-shrink-0 mt-0.5" />
                             <span className="text-gray-700">{feature}</span>
                           </li>
                         ))}
@@ -192,6 +195,7 @@ const ServicesPage: React.FC = () => {
                       <Button
                         variant="primary"
                         size="lg"
+                        className="bg-none bg-[#04aaa5] hover:bg-[#028e89] text-white"
                         onClick={() => (window.location.href = "/contact")}
                       >
                         Learn More

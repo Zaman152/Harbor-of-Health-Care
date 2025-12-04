@@ -190,7 +190,7 @@ const Header: React.FC = () => {
 
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-2 text-gray-700 hover:text-pink-500 transition-colors"
+              className="lg:hidden p-2 text-[#04aaa5] hover:text-[#04aaa5] transition-colors"
               onClick={() => setIsMobileMenuOpen(true)}
               aria-label="Open menu"
             >

@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Heart, Award, Users, Clock, Quote } from "lucide-react";
+import { Heart, Award, Users, Clock, Quote, Check } from "lucide-react";
 import SectionTitle from "@/components/shared/SectionTitle";
 import Button from "@/components/ui/Button";
 
@@ -37,24 +37,17 @@ const AboutPage: React.FC = () => {
 
   return (
     <>
-      <div className="pt-24 pb-16 bg-gradient-to-br from-teal-50 via-white to-cream">
+      <div className="pt-24 pb-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle
-            title="About Us"
-            subtitle="Here to Serve"
-          />
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <p className="text-xl text-gray-700 leading-relaxed">
-              Harbor of Health Home Care Services is driven by our love for exceptional care delivered with genuine Compassion. Discover our commitment to the top quality of care that you or your loved one deserve. Serving you brings us joy!
-            </p>
-          </motion.div>
+          <div className="rounded-3xl bg-[#04aaa5] text-white px-6 py-10 md:py-14 shadow-sm">
+            <div className="text-center max-w-4xl mx-auto">
+              <div className="text-sm font-semibold tracking-wider opacity-90 mb-2">ABOUT US</div>
+              <h1 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Here to Serve</h1>
+              <p className="text-xl opacity-95">
+                Harbor of Health Home Care Services is driven by our love for exceptional care delivered with genuine Compassion. Discover our commitment to the top quality of care that you or your loved one deserve. Serving you brings us joy!
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -88,7 +81,7 @@ const AboutPage: React.FC = () => {
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                   WHO WE ARE
                 </h2>
-                <h3 className="font-heading text-2xl font-bold bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent mb-4">
+                <h3 className="font-heading text-2xl font-bold text-[#04aaa5] mb-4">
                   Boutique Homecare
                 </h3>
                 <p className="text-lg text-gray-700 leading-relaxed mb-4">
@@ -96,15 +89,15 @@ const AboutPage: React.FC = () => {
                 </p>
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start">
-                    <span className="text-pink-500 mr-2">•</span>
+                    <Check className="w-5 h-5 text-[#04aaa5] mr-2 mt-0.5 flex-shrink-0" />
                     <span>Personalized care plans tailored to your or your loved one&apos;s unique needs.</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-pink-500 mr-2">•</span>
+                    <Check className="w-5 h-5 text-[#04aaa5] mr-2 mt-0.5 flex-shrink-0" />
                     <span>A team of dedicated professionals devoted to your or your loved one&apos;s well-being.</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-pink-500 mr-2">•</span>
+                    <Check className="w-5 h-5 text-[#04aaa5] mr-2 mt-0.5 flex-shrink-0" />
                     <span>Peace of mind knowing you or your loved ones are cared for by experts with genuine compassion.</span>
                   </li>
                 </ul>
@@ -123,7 +116,7 @@ const AboutPage: React.FC = () => {
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 text-center mb-6">
               Where Care Meets Genuine Hearts
             </h2>
-            <p className="text-2xl text-pink-600 font-semibold italic text-center mb-8">
+            <p className="text-2xl text-[#04aaa5] font-semibold italic text-center mb-8">
               We are Here to Serve!
             </p>
             <div className="max-w-3xl mx-auto space-y-4">
@@ -152,30 +145,30 @@ const AboutPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-20"
+            className="mb-20 rounded-2xl bg-[#04aaa5] text-white p-8 md:p-12 transition-all"
           >
-            <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 text-center mb-8">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-center mb-8">
               A NETWORK OF HEALTHCARE CONNECTIONS IN EDMONTON:
             </h2>
             <div className="max-w-4xl mx-auto">
-              <p className="text-lg text-gray-700 leading-relaxed mb-6">
+              <p className="text-lg leading-relaxed mb-6">
                 Here in Edmonton, Harbor of Health Home Care Services serves as the crucial link to a comprehensive healthcare experience. Apart from our devoted team of caregivers, we&apos;ve established an extensive network of healthcare professionals to ensure you receive specialized care whenever necessary. This includes:
               </p>
-              <ul className="space-y-3 text-gray-700 mb-6">
+              <ul className="space-y-3 mb-6">
                 <li className="flex items-start">
-                  <span className="text-teal-500 mr-2">•</span>
+                  <Check className="w-5 h-5 text-white mr-2 mt-0.5 flex-shrink-0" />
                   <span>Collaborating with Occupational Therapists to tackle daily living obstacles,</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 mr-2">•</span>
+                  <Check className="w-5 h-5 text-white mr-2 mt-0.5 flex-shrink-0" />
                   <span>Linking you with Physical Therapists to enhance mobility, and</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-teal-500 mr-2">•</span>
+                  <Check className="w-5 h-5 text-white mr-2 mt-0.5 flex-shrink-0" />
                   <span>Arranging vital tests through in-house labs.</span>
                 </li>
               </ul>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg leading-relaxed">
                 Our dedication lies in your overall wellness. With Harbor of Health Home Care Services, you&apos;re not simply acquiring a caregiver; you&apos;re gaining a reliable ally with broad healthcare connections, guaranteeing an unparalleled care journey.
               </p>
             </div>
@@ -241,7 +234,7 @@ const AboutPage: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-r from-teal-500 via-pink-500 to-cyan-400 rounded-2xl p-8 md:p-12 text-center text-white"
+            className="rounded-2xl p-8 md:p-12 text-center text-white bg-[#04aaa5] hover:bg-[#028e89] transition-colors"
           >
             <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
               PREMIUM CARE AWAITS
@@ -249,13 +242,13 @@ const AboutPage: React.FC = () => {
             <h3 className="font-heading text-2xl font-semibold mb-6">
               Elevate Your Care Services
             </h3>
-            <p className="text-xl text-teal-50 max-w-3xl mx-auto leading-relaxed mb-6">
+            <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-6">
               Enhance Your Home Care Experience with Harbor of Health Home Care Services! Are you ready to receive or provide your loved ones with the highest quality care possible? Harbor of Health offers comprehensive home care services customized to your unique needs. Whether you require assistance with daily tasks, companionship, or specialized care, we&apos;re here to support you every step of the way. Contact us today to arrange a consultation and elevate your care services to the next level.
             </p>
             <Button
               variant="secondary"
               size="lg"
-              className="bg-white text-teal-500 hover:bg-gray-100"
+              className="bg-white text-[#04aaa5] hover:bg-white/90"
               onClick={() => (window.location.href = "/contact")}
             >
               Get in Touch

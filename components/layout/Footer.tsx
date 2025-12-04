@@ -32,27 +32,8 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-gray-300 relative overflow-hidden">
-      {/* Decorative wave at top */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-[#04aaa5]" />
-      
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
-        <motion.div
-          className="absolute top-20 left-20 w-64 h-64 bg-[#04aaa5] rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        {/* Subtle teal wash over the dark background */}
-        <div className="absolute inset-0 bg-[#04aaa5]/8" />
-      </div>
+    <footer className="bg-gray-100 text-gray-700 relative overflow-hidden">
+      {/* Background kept minimal per spec (no waves/blobs) */}
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -251,7 +232,7 @@ const Footer: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="border-t border-gray-800 mt-12 pt-8"
+          className="border-t border-gray-300 mt-12 pt-8"
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center justify-between space-y-2 md:space-y-0">

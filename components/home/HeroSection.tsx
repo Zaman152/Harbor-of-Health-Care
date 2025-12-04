@@ -97,7 +97,7 @@ const HeroSection: React.FC = () => {
               height: shape.size,
               left: shape.x,
               top: shape.y,
-              background: `linear-gradient(135deg, rgba(255, 122, 197, 0.3), rgba(255, 210, 235, 0.2))`,
+              background: `linear-gradient(135deg, rgba(4, 170, 165, 0.30), rgba(4, 170, 165, 0.15))`,
             }}
             animate={{
               y: [0, -30, 0],
@@ -127,10 +127,9 @@ const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+                className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-center lg:text-left bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent"
               >
-                We connect seniors with their{" "}
-                <span className="bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent">ideal caregivers</span>
+                We connect seniors with their ideal caregivers
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
