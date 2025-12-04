@@ -33,7 +33,7 @@ const GetStartedSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-teal-50 via-cream to-white">
+    <section className="py-20 bg-[#04aaa5]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title="GET STARTED IN 3 EASY STEPS"

@@ -27,24 +27,26 @@ const StatCard: React.FC<{
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
       whileHover={{ y: -4, scale: 1.02 }}
-      className="bg-white p-6 rounded-2xl shadow-md text-center hover:shadow-lg transition-shadow"
+      className="bg-white p-6 rounded-2xl shadow-md text-center hover:shadow-lg transition-shadow group"
     >
-      <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 bg-clip-text text-transparent mb-2">
-        {stat.isText ? (
-          stat.label
-        ) : (
-          <>
-            <CountUp
-              start={0}
-              end={stat.number}
-              duration={2}
-              decimals={0}
-            />
-            {stat.suffix}
-          </>
-        )}
+      <div className="mb-2">
+        <span className="inline-flex items-center justify-center rounded-full bg-[#04aaa5]/10 text-[#04aaa5] font-bold text-3xl md:text-4xl border border-[#04aaa5]/20 px-5 py-3">
+          {stat.isText ? (
+            stat.label
+          ) : (
+            <>
+              <CountUp
+                start={0}
+                end={stat.number}
+                duration={2}
+                decimals={0}
+              />
+              {stat.suffix}
+            </>
+          )}
+        </span>
       </div>
-      <div className="text-gray-600 font-medium">{stat.label}</div>
+      <div className="text-gray-600 font-medium transition-colors group-hover:text-[#04aaa5]">{stat.label}</div>
     </motion.div>
   );
 };

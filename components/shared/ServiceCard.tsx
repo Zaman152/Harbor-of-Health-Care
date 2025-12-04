@@ -27,7 +27,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       className="h-full"
     >
       <motion.div
-        className="glass-card h-full flex flex-col p-6 group cursor-pointer"
+        className="bg-white rounded-2xl shadow-md h-full flex flex-col p-6 group cursor-pointer hover:shadow-lg transition-shadow"
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
