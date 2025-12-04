@@ -24,21 +24,22 @@ const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [messages, setMessages] = useState<Message[]>(initialMessages);
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const handleToggle = () => setIsOpen((prev) => !prev);
 
-  // Auto-scroll to bottom when messages change
+  // Auto-scroll to bottom when messages change or when loading state changes
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [messages, isLoading]);
 
   const handleSendMessage = async () => {
     const trimmed = inputValue.trim();
-    if (!trimmed) return;
+    if (!trimmed || isLoading) return;
 
     const timestamp = new Intl.DateTimeFormat("en-CA", {
       hour: "numeric",
@@ -55,6 +56,7 @@ const ChatWidget: React.FC = () => {
     // Add user message immediately
     setMessages((prev) => [...prev, userMessage]);
     setInputValue("");
+    setIsLoading(true);
 
     // Send message to webhook and wait for response
     try {
@@ -68,24 +70,78 @@ const ChatWidget: React.FC = () => {
         }),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        // Check if n8n returned a response message in various possible formats
-        const botResponseText = data?.response || data?.message || data?.text || data?.Reply || data?.reply || data?.Response || data?.Message || (typeof data === 'string' ? data : null);
-        
-        if (botResponseText && typeof botResponseText === 'string') {
-          const botMessage: Message = {
-            id: Date.now() + 1,
-            sender: "bot",
-            text: botResponseText,
-            time: "Just now",
-          };
-          setMessages((prev) => [...prev, botMessage]);
-        }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      // Wait for the response body from n8n's "Respond to Webhook" node
+      const data = await response.json();
+      
+      // Check if n8n returned a response message in various possible formats
+      // Handle array response: [{"output":"text"}]
+      let botResponseText = '';
+      
+      if (Array.isArray(data) && data.length > 0) {
+        // Extract from array format: [{"output":"text"}]
+        botResponseText = data[0]?.output || data[0]?.Output || data[0]?.response || data[0]?.Response || '';
+      } else if (data && typeof data === 'object') {
+        // Handle object response: {"response":"text"} or {"output":"text"}
+        botResponseText = 
+          data?.response || 
+          data?.message || 
+          data?.text || 
+          data?.Reply || 
+          data?.reply || 
+          data?.Response || 
+          data?.Message || 
+          data?.output ||
+          data?.Output ||
+          data?.data;
+      } else if (typeof data === 'string') {
+        // Handle string response
+        botResponseText = data;
+      }
+      
+      // Fallback if nothing found
+      if (!botResponseText) {
+        botResponseText = JSON.stringify(data);
+      }
+      
+      if (botResponseText && typeof botResponseText === 'string' && botResponseText.trim()) {
+        const botTimestamp = new Intl.DateTimeFormat("en-CA", {
+          hour: "numeric",
+          minute: "2-digit",
+        }).format(new Date());
+
+        const botMessage: Message = {
+          id: Date.now() + 1,
+          sender: "bot",
+          text: botResponseText.trim(),
+          time: botTimestamp,
+        };
+        setMessages((prev) => [...prev, botMessage]);
+      } else {
+        // If no valid response text found, show a default message
+        const botMessage: Message = {
+          id: Date.now() + 1,
+          sender: "bot",
+          text: "I received your message, but couldn't process the response. Please try again.",
+          time: "Just now",
+        };
+        setMessages((prev) => [...prev, botMessage]);
       }
     } catch (error) {
-      // Fail silently but log errors for debugging
+      // Show error message to user
       console.error("Failed to send message to webhook:", error);
+      const errorMessage: Message = {
+        id: Date.now() + 1,
+        sender: "bot",
+        text: "Sorry, I'm having trouble connecting right now. Please try again in a moment.",
+        time: "Just now",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -173,6 +229,18 @@ const ChatWidget: React.FC = () => {
                     </div>
                   </div>
                 ))}
+                {/* Typing indicator while waiting for response */}
+                {isLoading && (
+                  <div className="flex justify-start">
+                    <div className="max-w-[80%] rounded-2xl px-4 py-3 shadow-sm bg-white/80 text-gray-800 border border-white/60">
+                      <div className="flex items-center space-x-1">
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <div ref={messagesEndRef} />
               </div>
 
@@ -184,16 +252,18 @@ const ChatWidget: React.FC = () => {
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
                     rows={2}
-                    placeholder="Ask us about services, availability, funding..."
-                    className="flex-1 rounded-xl border border-gray-200 bg-white/90 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 resize-none"
+                    disabled={isLoading}
+                    placeholder={isLoading ? "Waiting for response..." : "Ask us about services, availability, funding..."}
+                    className="flex-1 rounded-xl border border-gray-200 bg-white/90 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-teal-400 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   <motion.button
                     type="button"
                     onClick={handleSendMessage}
                     aria-label="Send message"
-                    className="p-3 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-400 text-white shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    disabled={isLoading}
+                    className="p-3 rounded-xl bg-gradient-to-br from-teal-500 to-cyan-400 text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    whileHover={!isLoading ? { scale: 1.05 } : {}}
+                    whileTap={!isLoading ? { scale: 0.95 } : {}}
                   >
                     <Send className="w-4 h-4" />
                   </motion.button>
