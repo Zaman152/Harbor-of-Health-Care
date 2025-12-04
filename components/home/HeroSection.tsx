@@ -150,7 +150,7 @@ const HeroSection: React.FC = () => {
                 <Button
                   variant="primary"
                   size="lg"
-                  className="text-lg px-8 py-4 rounded-full bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 hover:from-pink-600 hover:via-pink-500 hover:to-pink-400 text-white shadow-lg"
+                  className="text-lg px-8 py-4 rounded-full text-white shadow-lg"
                   onClick={() => (window.location.href = "/contact")}
                 >
                   Book a Free Consultation
@@ -160,7 +160,7 @@ const HeroSection: React.FC = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="text-lg px-8 py-4 rounded-full border-2 border-pink-500 text-pink-500 hover:bg-gradient-to-br hover:from-pink-50 hover:via-pink-100 hover:to-pink-50 transition-all"
+                  className="text-lg px-8 py-4 rounded-full transition-all"
                   onClick={() => (window.location.href = "tel:+17809060994")}
                 >
                   Call (780) 906-0994
@@ -187,9 +187,9 @@ const HeroSection: React.FC = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Check className="w-5 h-5 text-pink-500 flex-shrink-0" />
+                    <Check className="w-5 h-5 text-[#04aaa5] flex-shrink-0" />
                   </motion.div>
-                  <span className="text-gray-700 group-hover:text-pink-500 transition-colors text-sm">
+                  <span className="text-gray-700 group-hover:text-[#04aaa5] transition-colors text-sm">
                     {feature}
                   </span>
                 </motion.div>

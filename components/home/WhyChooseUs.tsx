@@ -95,9 +95,9 @@ const WhyChooseUs: React.FC = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="glass-card p-6 text-center"
+                className="glass-card p-6 text-center group"
               >
-                <p className="text-gray-700 leading-relaxed">{point}</p>
+                <p className="text-gray-700 leading-relaxed transition-colors group-hover:text-[#04aaa5]">{point}</p>
               </motion.div>
             ))}
           </div>

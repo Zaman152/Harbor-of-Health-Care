@@ -64,9 +64,9 @@ const ServiceAreasSection: React.FC = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-shadow group"
                 >
-                  <span className="text-gray-700 font-medium">{area}</span>
+                  <span className="text-gray-700 font-medium transition-colors group-hover:text-[#04aaa5]">{area}</span>
                 </motion.div>
               ))}
             </div>

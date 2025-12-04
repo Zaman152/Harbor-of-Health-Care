@@ -124,7 +124,7 @@ const ServicesGrid: React.FC = () => {
         >
           <motion.a
             href="/services"
-            className="inline-flex items-center text-pink-600 font-semibold text-lg hover:text-pink-700 transition-colors group border-b-2 border-transparent hover:border-pink-600"
+            className="inline-flex items-center text-gray-700 font-semibold text-lg hover:text-[#04aaa5] transition-colors group border-b-2 border-transparent hover:border-[#04aaa5]"
             whileHover={{ x: 5 }}
           >
             Explore our additional services

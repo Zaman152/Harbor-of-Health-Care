@@ -101,8 +101,7 @@ const DetailedServices: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
-            // Highlight the first card with light blue gradient
-            const isHighlighted = index === 0;
+            // All cards share the same styling (no default pink highlight)
             return (
               <motion.div
                 key={service.title}
@@ -112,44 +111,30 @@ const DetailedServices: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="h-full"
               >
-                <div className={`h-full p-6 rounded-2xl shadow-md transition-all duration-300 ${
-                  isHighlighted 
-                    ? "bg-gradient-to-br from-pink-50 to-pink-100 border-2 border-pink-200" 
-                    : "bg-white hover:shadow-lg"
-                }`}>
-                  <div className="flex flex-col h-full">
+                <div className={`group relative overflow-hidden h-full p-6 rounded-2xl shadow-md transition-all duration-300 bg-white hover:shadow-lg`}>
+                  {/* Hover fill overlay */}
+                  <div className="absolute inset-0 w-0 group-hover:w-full bg-[#04aaa5] transition-all duration-500 ease-in-out" />
+                  <div className="relative z-10 flex flex-col h-full group">
                     {/* Icon top-left */}
                     <div className="mb-4">
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                        isHighlighted 
-                          ? "bg-pink-100" 
-                          : "bg-pink-50"
-                      }`}>
-                        <Icon className={`w-6 h-6 ${
-                          isHighlighted 
-                            ? "text-pink-500" 
-                            : "text-pink-400"
-                        }`} />
+                      <div className={`w-14 h-14 rounded-xl flex items-center justify-center bg-[#04aaa5]/10`}>
+                        <Icon className={`w-8 h-8 transition-colors text-[#04aaa5] group-hover:text-white`} />
                       </div>
                     </div>
                     
                     {/* Title and Description */}
                     <div className="flex-grow mb-4">
-                      <h3 className="font-heading text-lg font-bold text-gray-900 mb-3">
+                      <h3 className="font-heading text-lg font-bold text-gray-900 mb-3 transition-colors group-hover:text-white">
                         {service.title}
                       </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed">
+                      <p className="text-gray-600 text-sm leading-relaxed transition-colors group-hover:text-white/90">
                         {service.description}
                       </p>
                     </div>
                     
                     {/* Arrow button bottom-right */}
                     <div className="flex justify-end mt-auto">
-                      <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${
-                        isHighlighted
-                          ? "bg-gradient-to-r from-pink-500 via-pink-400 to-pink-300 hover:from-pink-600 hover:via-pink-500 hover:to-pink-400 text-white"
-                          : "bg-pink-50 hover:bg-pink-100 text-pink-500"
-                      }`}>
+                      <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-all bg-[#04aaa5]/10 group-hover:bg-white/20 text-[#04aaa5] group-hover:text-white`}>
                         <ArrowRight className="w-5 h-5" />
                       </button>
                     </div>

@@ -37,12 +37,12 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
             whileHover={{ scale: 1.15, rotate: 5 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-400/30 via-pink-400/20 to-cyan-400/30 rounded-full blur-xl" />
-            <div className="relative bg-gradient-to-br from-teal-500 via-pink-500 to-cyan-400 p-4 rounded-2xl border-2 border-pink-300/50">
-              <Icon className="w-8 h-8 text-white" />
+            <div className="absolute inset-0 bg-[#04aaa5]/15 rounded-full blur-xl" />
+            <div className="relative bg-white p-4 rounded-2xl border-2 border-[#04aaa5]/30">
+              <Icon className="w-8 h-8 text-[#04aaa5]" />
             </div>
           </motion.div>
-          <h3 className="font-heading text-xl font-bold text-gray-900 mb-3 group-hover:text-pink-600 transition-colors">
+          <h3 className="font-heading text-xl font-bold text-gray-900 mb-3 group-hover:text-[#04aaa5] transition-colors">
             {title}
           </h3>
           <p className="text-gray-700 leading-relaxed">{description}</p>
