@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -359,9 +360,14 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({ value, onChange, erro
 };
 
 const ContactPage: React.FC = () => {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
+  const [slotLoading, setSlotLoading] = useState(false);
+  const [slotError, setSlotError] = useState<string>("");
+  const [availableSlots, setAvailableSlots] = useState<string[]>([]);
+  const [redirectIn, setRedirectIn] = useState<number>(20);
   
   // Real-time validation states
   const [emailValidation, setEmailValidation] = useState<{
@@ -401,6 +407,103 @@ const ContactPage: React.FC = () => {
   const postalCodeValue = watch("postalCode");
   const countryCodeValue = watch("countryCode");
   const selectedCountry = sortedCountries.find((c) => c.code === countryCodeValue) || sortedCountries[0];
+
+  // Auto-redirect to home after success with countdown
+  useEffect(() => {
+    if (!submitSuccess) return;
+    setRedirectIn(20);
+    const interval = setInterval(() => {
+      setRedirectIn((s) => {
+        if (s <= 1) {
+          clearInterval(interval);
+          router.push("/");
+          return 0;
+        }
+        return s - 1;
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [submitSuccess, router]);
+
+  // Helper: extract possible slot timestamps (number ms or ISO strings) from varied API shapes
+  const extractSlotDates = (json: any): Date[] => {
+    const results: Date[] = [];
+    const pushVal = (v: any) => {
+      if (typeof v === "number" && Number.isFinite(v)) {
+        results.push(new Date(v));
+      } else if (typeof v === "string") {
+        const d = new Date(v);
+        if (!isNaN(d.getTime())) results.push(d);
+      }
+    };
+    const walk = (val: any) => {
+      if (Array.isArray(val)) {
+        val.forEach(walk);
+      } else if (val && typeof val === "object") {
+        Object.values(val).forEach(walk);
+      } else {
+        pushVal(val);
+      }
+    };
+    if (Array.isArray(json)) walk(json);
+    else if (json?.data !== undefined) walk(json.data);
+    else if (json?.slots !== undefined) walk(json.slots);
+    else walk(json);
+    // Deduplicate by ms value
+    const unique = Array.from(new Map(results.map(d => [d.getTime(), d])).values());
+    return unique.sort((a,b) => a.getTime() - b.getTime());
+  };
+
+  // Fetch free slots from server for the selected date
+  useEffect(() => {
+    const date = watch("appointmentDate");
+    if (!date) {
+      setAvailableSlots([]);
+      setSlotError("");
+      return;
+    }
+    // Only fetch while on step 2
+    if (currentStep !== 2) return;
+    try {
+      setSlotLoading(true);
+      setSlotError("");
+      // Compute start/end of day in ms (UTC) to match upstream expectations
+      const [y, m, d] = date.split("-").map((v) => parseInt(v, 10));
+      const start = Date.UTC(y, (m as number) - 1, d, 0, 0, 0);
+      const end = Date.UTC(y, (m as number) - 1, d, 23, 59, 59);
+      const url = `/api/free-slots?startDate=${start}&endDate=${end}`;
+      fetch(url, { cache: "no-store" })
+        .then(async (res) => {
+          const json = await res.json();
+          if (!res.ok) throw new Error(json?.error || "Failed to load free slots");
+          // Normalize diverse shapes -> Date[] then to labels
+          const dates = extractSlotDates(json);
+          const formatted = dates
+            .map((d) => formatTimeLabel(d))
+            .filter((v, i, arr) => arr.indexOf(v) === i);
+          setAvailableSlots(formatted);
+        })
+        .catch((e) => {
+          setSlotError(e?.message || "Unable to load time slots");
+          setAvailableSlots([]);
+        })
+        .finally(() => setSlotLoading(false));
+    } catch (e: any) {
+      setSlotLoading(false);
+      setSlotError(e?.message || "Unable to load time slots");
+      setAvailableSlots([]);
+    }
+  }, [watch("appointmentDate"), currentStep]);
+
+  const formatTimeLabel = (d: Date) => {
+    let hours = d.getHours();
+    const minutes = d.getMinutes();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const mm = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    return `${hours.toString().padStart(2, "0")}:${mm} ${ampm}`;
+  };
 
   // Real-time email validation
   useEffect(() => {
@@ -464,22 +567,27 @@ const ContactPage: React.FC = () => {
   }, [postalCodeValue, setValue]);
 
   const onSubmit = async (data: ContactFormData) => {
-    setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form submitted:", data);
-    setIsSubmitting(false);
-    setSubmitSuccess(true);
-    reset({
-      countryCode: "CA",
-      appointmentDate: "",
-      appointmentTime: "",
-    });
-    // Reset validation states
-    setEmailValidation({ state: "idle", message: "" });
-    setPhoneValidation({ state: "idle", message: "" });
-    setPostalCodeValidation({ state: "idle", message: "" });
-    setTimeout(() => setSubmitSuccess(false), 5000);
+    try {
+      setIsSubmitting(true);
+      const res = await fetch("/api/submit-contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json?.error || "Submission failed");
+      setSubmitSuccess(true);
+      reset({ countryCode: "CA", appointmentDate: "", appointmentTime: "" });
+      setEmailValidation({ state: "idle", message: "" });
+      setPhoneValidation({ state: "idle", message: "" });
+      setPostalCodeValidation({ state: "idle", message: "" });
+      // Do not auto-hide success; countdown will navigate home
+    } catch (e) {
+      console.error(e);
+      alert((e as any)?.message || "Unable to submit the form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Check if form is valid for button enable/disable
@@ -497,7 +605,9 @@ const ContactPage: React.FC = () => {
 
   return (
     <>
-      <div className="pt-24 pb-16 bg-gradient-to-br from-teal-50 via-white to-cream">
+      <div className="pt-28 pb-16 bg-gradient-to-br from-teal-100 via-teal-50 to-cream relative overflow-hidden">
+        <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#04aaa5]/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-12 -left-10 w-80 h-80 bg-[#04aaa5]/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <SectionTitle
             title="Connect with us"
@@ -592,7 +702,7 @@ const ContactPage: React.FC = () => {
               </div>
             </motion.div>
 
-            {/* Enhanced Contact Form */}
+            {/* Enhanced Contact Form or Success Panel */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -600,25 +710,23 @@ const ContactPage: React.FC = () => {
               className="lg:col-span-2"
             >
               <div className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-gray-100">
+                {submitSuccess ? (
+                  <div className="text-center space-y-4">
+                    <h3 className="font-heading text-2xl font-bold text-gray-900">Thank you!</h3>
+                    <p className="text-gray-700">Thank you for reaching out! We&apos;ll contact you within 24 hours. We are Here to Serve!</p>
+                    <p className="text-sm text-gray-500">Returning to home in {redirectIn}s.</p>
+                    <div>
+                      <Button onClick={() => router.push("/")} className="rounded-full bg-[#04aaa5] hover:bg-[#028e89]">Go to Home now</Button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
                 <h3 className="font-heading text-2xl font-bold text-gray-900 mb-6">
                   Request Free Consultation
                 </h3>
                 <p className="text-gray-700 leading-relaxed mb-8">
                   Our senior care planning process is a proactive one and focuses on taking preventative measures toward ensuring good health and well-being. We believe finding the best senior caregiver for yourself or your loved one is one of the most important choices you will ever have to make.
                 </p>
-
-                <AnimatePresence>
-                  {submitSuccess && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="mb-6 p-4 bg-[#04aaa5]/10 border-2 border-[#04aaa5]/30 rounded-lg text-[#046c69]"
-                    >
-                      Thank you for reaching out! We&apos;ll contact you within 24 hours. We are Here to Serve!
-                    </motion.div>
-                  )}
-                </AnimatePresence>
                 {/* Stepper */}
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   {["Patient Information", "Appointment Information", "Appointment Confirmation"].map((label, idx) => {
@@ -676,13 +784,21 @@ const ContactPage: React.FC = () => {
                           <EnhancedInput label="Preferred Date" type="date" id="appointmentDate" {...register("appointmentDate")} error={errors.appointmentDate?.message} required />
                           <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">Preferred Time <span className="text-red-500">*</span></label>
-                            <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
-                              {['09:00 AM','10:00 AM','11:00 AM','01:00 PM','02:00 PM','03:00 PM','04:00 PM','05:00 PM'].map((t) => (
-                                <button key={t} type="button" onClick={() => setValue('appointmentTime', t, { shouldValidate: true })} className={`px-3 py-2 rounded-lg text-sm border transition-colors ${watch('appointmentTime')===t ? 'bg-[#04aaa5] text-white border-[#04aaa5]' : 'bg-white text-gray-700 border-gray-200 hover:bg-[#04aaa5]/10 hover:border-[#04aaa5]'}`}>
-                                  {t}
-                                </button>
-                              ))}
-                            </div>
+                            {slotLoading ? (
+                              <div className="text-sm text-gray-500">Loading available slots...</div>
+                            ) : slotError ? (
+                              <div className="text-sm text-red-500">{slotError}</div>
+                            ) : availableSlots.length === 0 ? (
+                              <div className="text-sm text-gray-500">No slots available for the selected date.</div>
+                            ) : (
+                              <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                                {availableSlots.map((t) => (
+                                  <button key={t} type="button" onClick={() => setValue('appointmentTime', t, { shouldValidate: true })} className={`px-3 py-2 rounded-lg text-sm border transition-colors ${watch('appointmentTime')===t ? 'bg-[#04aaa5] text-white border-[#04aaa5]' : 'bg-white text-gray-700 border-gray-200 hover:bg-[#04aaa5]/10 hover:border-[#04aaa5]'}`}>
+                                    {t}
+                                  </button>
+                                ))}
+                              </div>
+                            )}
                             {errors.appointmentTime?.message && <p className="mt-1 text-sm text-red-500">{errors.appointmentTime.message}</p>}
                           </div>
                         </div>
@@ -717,6 +833,8 @@ const ContactPage: React.FC = () => {
                     )}
                   </AnimatePresence>
                 </form>
+                </>
+                )}
               </div>
             </motion.div>
           </div>
